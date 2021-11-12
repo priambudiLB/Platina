@@ -1,5 +1,5 @@
 # Platina
-Repository for team SeTEAM Binar Academy FSW Wave 12
+Repository for team Platina Binar Academy FSW Wave 12
 
 ## Developing Platina
 - Create your branch with your feature: `git checkout -b [username]/my-feature`;
