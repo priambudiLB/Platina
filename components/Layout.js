@@ -4,11 +4,11 @@ import Notify from "./Notify";
 
 function Layout({ children }) {
   return (
-    <div>
+    <>
       <Navbar />
       <Notify />
-      <div className="container">{children}</div>
-    </div>
+      {children}
+    </>
   );
 }
 
