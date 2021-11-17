@@ -1,0 +1,117 @@
+.textBox {
+  background-image: url(../assets/bg1.jpg);
+  background-size: cover;
+  height: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.textBox .intro {
+  z-index: 1;
+  position: relative;
+  margin-top: -145px;
+}
+.textBox::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.7)
+  );
+  position: absolute;
+  bottom: 0;
+}
+
+.textBox .display4 {
+  color: white;
+  margin-top: 150px;
+  font-weight: 200;
+  text-shadow: 2px 2px 2px black;
+  font-size: 26px;
+  margin-bottom: 30px;
+  padding-top: 50px;
+}
+
+.textBox .display4 span {
+  font-weight: 500;
+  border-bottom: 5px solid rgb(216, 195, 10);
+}
+.textBox p {
+  color: white;
+  font-size: 14px;
+}
+.textBox p span {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.tombol {
+  margin-top: 50px;
+}
+
+.info {
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  margin-top: -50px;
+  background-color: white;
+  padding: 20px;
+  z-index: 3;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.info .panel {
+  display: flex;
+  margin-top: -5px;
+  justify-content: center;
+}
+
+.panel i {
+  font-size: 40px;
+  margin-right: 20px;
+}
+
+.panel p {
+  font-size: 14px;
+  font-weight: 200;
+  margin-top: -5px;
+}
+
+.panel h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.textPanel {
+  width: 140px;
+  padding: 10px 0;
+}
+
+/* DEKSTOP VERSION */
+@media (min-width: 992px) {
+  .textBox {
+    margin-top: -212px;
+    height: 600px;
+  }
+  .textBox .display4 {
+    font-size: 62px;
+    padding-top: 150px;
+  }
+  .textBox p {
+    font-size: 20px;
+  }
+  .textBox p span {
+    font-size: 30px;
+  }
+
+  .info {
+    height: 100px;
+  }
+}
