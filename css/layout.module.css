@@ -94,6 +94,65 @@
   padding: 10px 0;
 }
 
+/* PRODUCT MENU */
+.menu {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+.menu h3 {
+  font-size: 40px;
+  border-bottom: 5px solid rgb(238, 206, 27);
+}
+.cardMenu {
+  padding: 20px;
+  border: 3px solid #cfcfcf;
+  border-radius: 50px;
+  margin: 30px 30px;
+  display: flex;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.imgMenu {
+  border-radius: 50px;
+}
+
+.cardBody {
+  padding: 10px;
+}
+.topTitle {
+  display: flex;
+  align-items: flex-end;
+  border-top: 4px solid black;
+  margin-top: 25px;
+  padding-top: 20px;
+}
+.topTitle h4 {
+  width: 210px;
+}
+.topTitle h5 {
+  padding: 5px;
+  /* margin-left: 20%; */
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+.topTitle p {
+  font-size: 20px;
+  padding-top: 27px;
+  margin-left: 5px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+.button a {
+  width: 300px;
+  margin-top: 20px;
+}
+
 /* DEKSTOP VERSION */
 @media (min-width: 992px) {
   .textBox {
