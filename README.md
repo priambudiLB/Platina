@@ -1,27 +1,24 @@
 <h1 align="center">Platina <a href="https://sonarcloud.io/summary/new_code?id=priambudiLB_Platina">
-<img height="20px" src="https://sonarcloud.io/api/project_badges/quality_gate?project=priambudiLB_Platina">
+<img height="20px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=alert_status">
 </a></h1>
 <p align="center">Repository for team Platina Binar Academy FSW Wave 12</p>
 
 <p align="center">
 
 <a href="https://sonarcloud.io/summary/new_code?id=priambudiLB_Platina">
-<img height="20px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=vulnerabilities">
+<img height="18px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=bugs">
 </a>
 <a href="https://sonarcloud.io/summary/new_code?id=priambudiLB_Platina">
-<img height="20px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=bugs">
+<img height="18px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=code_smells">
 </a>
 <a href="https://sonarcloud.io/summary/new_code?id=priambudiLB_Platina">
-<img height="20px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=code_smells">
+<img height="18px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=duplicated_lines_density">
 </a>
 <a href="https://sonarcloud.io/summary/new_code?id=priambudiLB_Platina">
-<img height="20px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=duplicated_lines_density">
+<img height="18px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=ncloc">
 </a>
 <a href="https://sonarcloud.io/summary/new_code?id=priambudiLB_Platina">
-<img height="20px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=ncloc">
-</a>
-<a href="https://sonarcloud.io/summary/new_code?id=priambudiLB_Platina">
-<img height="20px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=vulnerabilities">
+<img height="18px" src="https://sonarcloud.io/api/project_badges/measure?project=priambudiLB_Platina&metric=vulnerabilities">
 </a>
 
 </p>
