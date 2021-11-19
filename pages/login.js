@@ -21,7 +21,7 @@ const Signin = () => {
             placeholder="Your email"
           />
           <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
+            Well never share your email with anyone else.
           </div>
         </div>
 
@@ -42,7 +42,7 @@ const Signin = () => {
         </button>
 
         <p className="my-2">
-          You don't have an account?
+          You dont have an account?
           <Link href="/sign-up">
             <a style={{ color: "crimson" }}> Register Now</a>
           </Link>
