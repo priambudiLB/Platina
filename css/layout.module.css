@@ -1,0 +1,301 @@
+/* ======== TEXT-LANDING ======== */
+/* ======== TEXT-LANDING ======== */
+
+.textBox {
+  background-image: url(../assets/bg1.jpg);
+  background-size: cover;
+  height: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.textBox .intro {
+  z-index: 1;
+  position: relative;
+  margin-top: -145px;
+}
+.textBox::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); */
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.7)
+  );
+  position: absolute;
+  bottom: 0;
+}
+
+.textBox .display4 {
+  color: white;
+  margin-top: 150px;
+  font-weight: 200;
+  text-shadow: 2px 2px 2px black;
+  font-size: 26px;
+  margin-bottom: 30px;
+  padding-top: 50px;
+}
+
+.textBox .display4 span {
+  font-weight: 500;
+  border-bottom: 5px solid rgb(216, 195, 10);
+}
+.textBox p {
+  color: white;
+  font-size: 14px;
+}
+.textBox p span {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.tombol {
+  margin-top: 50px;
+}
+
+/* ======== PANEL ======== */
+/* ======== PANEL ======== */
+.info {
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  margin-top: -50px;
+  background-color: white;
+  padding: 20px;
+  z-index: 3;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.info .panel {
+  display: flex;
+  margin-top: -5px;
+  justify-content: center;
+}
+
+.panel i {
+  font-size: 40px;
+  margin-right: 20px;
+}
+
+.panel p {
+  font-size: 14px;
+  font-weight: 200;
+  margin-top: -5px;
+}
+
+.panel h6 {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.textPanel {
+  width: 140px;
+  padding: 10px 0;
+}
+
+/* ========= PRODUCT MENU========= */
+/* ========= PRODUCT MENU========= */
+.menuSpesial,
+.menuPopuler {
+  display: flex;
+  justify-content: center;
+  margin-top: 300px;
+  text-align: center;
+}
+.menuSpesial h3,
+.menuPopuler h3 {
+  font-size: 30px;
+  padding-bottom: 10px;
+  border-bottom: 5px solid rgb(238, 206, 27);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.menuPopuler {
+  margin-top: 50px;
+}
+
+.cardMenu {
+  width: 17rem;
+  height: 28rem;
+  padding: 20px;
+  border: 3px solid #cfcfcf;
+  border-radius: 50px;
+  margin: 20px 20px;
+  display: flex;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.imgMenu {
+  border-radius: 30px;
+}
+
+.cardBody {
+  padding: 10px;
+}
+.cardBody p {
+  font-size: 14px;
+}
+.topTitle {
+  display: flex;
+  align-items: flex-end;
+  border-top: 4px solid black;
+  margin-top: 10px;
+  padding-top: 15px;
+}
+.topTitle h4 {
+  width: 185px;
+  font-size: 18px;
+}
+.topTitle h5 {
+  padding: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 0;
+  /* margin-top: 5px; */
+}
+.topTitle p {
+  font-size: 14px;
+  width: 40px;
+  /* padding-top: 27px; */
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+.button a {
+  width: 300px;
+  margin: 5px 0 -5px 0;
+  border-radius: 20px;
+}
+
+/* =========== MAP =========== */
+/* =========== MAP =========== */
+.map {
+  width: 18rem;
+  height: 5rem;
+  display: flex;
+  background-color: #ca8c1a;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.8);
+  margin-left: 25px;
+  margin-top: 5%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+}
+.imgMap1 {
+  margin-left: -12px;
+  display: flex;
+}
+.imgMap {
+  border-radius: 10px;
+  cursor: pointer;
+}
+.textMap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  margin: 5px -5px 5px 5px;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+}
+.textMap h3 {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.textMap h5 {
+  color: white;
+  font-size: 8px;
+  margin-bottom: 4px;
+}
+.textMap h6 {
+  color: #ffc107;
+  cursor: pointer;
+  font-size: 8px;
+}
+
+/* ======== DEKSTOP VERSION ======== */
+@media (min-width: 992px) {
+  .textBox {
+    margin-top: -212px;
+    height: 600px;
+  }
+  .textBox .display4 {
+    font-size: 62px;
+    padding-top: 150px;
+  }
+  .textBox p {
+    font-size: 20px;
+  }
+  .textBox p span {
+    font-size: 30px;
+  }
+
+  .info {
+    height: 100px;
+  }
+
+  .menuSpesial,
+  .menuPopuler {
+    margin-top: 100px;
+  }
+  .menuSpesial h3,
+  .menuPopuler h3 {
+    font-size: 40px;
+  }
+
+  .cardMenu {
+    width: 22rem;
+    height: 35rem;
+    margin: 30px 20px;
+  }
+
+  .topTitle {
+    margin-top: 25px;
+  }
+
+  .topTitle h4 {
+    font-size: 20px;
+  }
+  .topTitle h5 {
+    font-size: 30px;
+  }
+  .topTitle p {
+    font-size: 18px;
+  }
+  .map {
+    width: 60rem;
+    height: 18rem;
+    border-radius: 20px;
+  }
+
+  .imgMap {
+    border-radius: 20px;
+  }
+
+  .textMap {
+    margin: 20px 10px 20px 20px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+  }
+
+  .textMap h3 {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .textMap h5 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .textMap h6 {
+    font-size: 16px;
+  }
+}
