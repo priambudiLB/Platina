@@ -1,12 +1,7 @@
 import Head from "next/head";
 import HomePage from "./home";
-import Image from "next/image";
-import styles from "../css/layout.module.css";
-import Link from "next/link";
 
-import tempe from "../assets/1copy.jpg";
-
-const Home = () => {
+export default function Home() {
   return (
     <>
       <Head>
@@ -15,6 +10,4 @@ const Home = () => {
       <HomePage />
     </>
   );
-};
-
-export default Home;
+}

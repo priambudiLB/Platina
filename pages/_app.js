@@ -1,14 +1,17 @@
 import "../styles/globals.css";
+import { ThemeProvider } from "@chakra-ui/core";
 import Layout from "../components/Layout";
-import { DataProvider } from "../store/GlobalState";
+import { AuthProvider } from "../services/auth";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <DataProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </DataProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
