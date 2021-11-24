@@ -3,8 +3,6 @@ import Navbar from "./Navbar";
 
 import Script from "next/script";
 
-import Script from "next/script";
-
 function Layout({ children }) {
   return (
     <>
