@@ -4,13 +4,17 @@
   position: relative;
   z-index: 3;
   text-transform: uppercase;
+  /* background-color: #949494; */
+  border-bottom: black;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .navbarBrand {
   color: black !important;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 500;
   font-family: "IBM Plex Sans", sans-serif;
+  text-decoration: none !important;
 }
 
 .navLink {
@@ -23,15 +27,27 @@
 }
 
 @media (min-width: 992px) {
+  .navbar {
+    background-color: transparent;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  .navbarBrand {
+    font-size: 24px;
+  }
+
   .navbarBrand,
   .navLink a {
-    color: white !important;
-    text-shadow: 2px 2px 2px black;
+    color: #e7e7e7 !important;
+    text-shadow: 1px 1px 2px black;
+    margin-top: 8px;
   }
+
   .navLink {
     text-transform: uppercase;
     margin-right: 10px;
-    margin-top: 5px;
+    font-size: 18px;
+    color: transparent;
   }
 
   .navLink:hover::after {
@@ -43,16 +59,29 @@
     padding-bottom: 5px;
     margin-bottom: -8px;
   }
+  .username {
+    color: #e7e7e7 !important;
+    text-shadow: 1px 1px 2px black;
+  }
   .cart {
-    font-size: 25px;
-    /* color: white; */
-    /* text-shadow: 2px 2px 2px black; */
+    /* font-size: 25px;
     margin-left: 30px;
     margin-top: 5px;
     background-color: #fff;
     border-radius: 10px;
     width: 40px;
     height: 40px;
+    text-align: center; */
+    margin-top: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+
+  .cart i {
+    font-size: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 0px 3px 2px 3px;
     text-align: center;
     cursor: pointer;
   }

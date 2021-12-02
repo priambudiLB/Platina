@@ -1,0 +1,104 @@
+.loading,
+.configure {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.configure .ring {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: -30px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-top: 4px solid #eedf0d;
+  animation: beesLine 4s linear infinite;
+}
+
+@keyframes beesLine {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.configure .ring::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  background: #eedf0d;
+  box-shadow: 0 0 0 5px #ffea2a33, 0 0 0 10px #ffea2a22, 0 0 0 20px #ffea2a11,
+    0 0 20px #eedf0d, 0 0 50px #eedf0d;
+}
+
+.configure .ring:nth-child(2) {
+  animation: beesLine2 4s linear infinite;
+  animation-delay: -1s;
+  border-top: 4px solid transparent;
+  border-left: 4px solid #ffffff;
+}
+
+@keyframes beesLine2 {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.configure .ring:nth-child(2)::before {
+  content: "";
+  position: absolute;
+  top: initial;
+  bottom: 12px;
+  left: 12px;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  background: #ffffff;
+  box-shadow: 0 0 0 5px #77777733, 0 0 0 10px #77777734, 0 0 0 20px #77777735,
+    0 0 20px #ffffff, 0 0 50px #ffffff;
+}
+
+.configure .ring:nth-child(3) {
+  animation: beesLine2 4s linear infinite;
+  animation-delay: -3s;
+  position: absolute;
+  top: -66.66px;
+  border-top: 4px solid transparent;
+  border-left: 4px solid #1cdef8;
+}
+
+.configure .ring:nth-child(3)::before {
+  content: "";
+  position: absolute;
+  top: initial;
+  bottom: 12px;
+  left: 12px;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  background: #1cdef8;
+  box-shadow: 0 0 0 5px #1cf8f833, 0 0 0 10px #1cf8f822, 0 0 0 20px #1cf8f811,
+    0 0 20px #1cdef8, 0 0 50px #1cdef8;
+}
+
+.configure p {
+  position: absolute;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 20px;
+  font-family: monospace;
+  bottom: -80px;
+  letter-spacing: 0.15em;
+}

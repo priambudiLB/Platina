@@ -1,65 +1,127 @@
-import React, { useState } from "react";
+import Head from "next/head";
 import Link from "next/link";
-import firebaseClient from "../services/firebase/firebaseClient";
-import firebase from "firebase/app";
-import "firebase/auth";
-import { Box, Flex, Input, FormControl, FormLabel, FormHelperText, FormErrorMessage, Stack, Button, Heading, useToast } from "@chakra-ui/core";
+import { useState, useContext, useEffect } from "react";
+import valid from "../utils/valid";
+import { DataContext } from "../store/GlobalState";
+import { postData } from "../utils/fetchData";
+import { useRouter } from "next/router";
 
-export default function Register({ props }) {
-  firebaseClient();
-  const toast = useToast();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import styles from "../css/relog.module.css";
+
+const Register = () => {
+  const initialState = {
+    username: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+  };
+  const [userData, setUserData] = useState(initialState);
+  const { username, email, password, confirm_password } = userData;
+
+  const { state, dispatch } = useContext(DataContext);
+  const { auth } = state;
+
+  const router = useRouter();
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+    dispatch({ type: "NOTIFY", payload: {} });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const errMsg = valid(username, email, password, confirm_password);
+    if (errMsg) return dispatch({ type: "NOTIFY", payload: { error: errMsg } });
+
+    dispatch({ type: "NOTIFY", payload: { loading: true } });
+
+    const res = await postData("auth/sign-up", userData);
+    if (res.err)
+      return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+
+    return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
+  };
+
+  useEffect(() => {
+    if (Object.keys(auth).length !== 0) router.push("/menu");
+  }, [auth]);
+
   return (
-    <Flex>
-      <Box w={500} p={4} my={12} mx="auto">
-        <Heading textAlign="center" as="h2">
-          Register
-        </Heading>
-        <FormControl>
-          <FormLabel htmlFor="username">Username</FormLabel>
-          <Input onChange={(e) => setUsername(e.target.value)} type="text" id="username" value={username} aria-describedby="username-helper-text" />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel htmlFor="email">Email address</FormLabel>
-          <Input onChange={(e) => setEmail(e.target.value)} type="email" id="emailAddress" value={email} aria-describedby="email-helper-text" />
-          <FormHelperText id="email-helper-text">We&apos;ll never share your email.</FormHelperText>
-        </FormControl>
+    <div>
+      <Head>
+        <title>Sign Up</title>
+      </Head>
 
-        <FormControl isRequired>
-          <FormLabel htmlFor="password">Password</FormLabel>
-          <Input onChange={(e) => setPassword(e.target.value)} type="password" id="password" value={password} aria-describedby="password-helper-text" />
-        </FormControl>
+      <form className={`mx-auto ${styles.formReg}`} onSubmit={handleSubmit}>
+        {/* USERNAME */}
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            className="form-control"
+            id="username"
+            name="username"
+            value={username}
+            onChange={handleChangeInput}
+          />
+        </div>
 
-        <Stack justify="center" mt={6} isInline spacing={10}>
-          <Button
-            minWidth="40%"
-            variant="solid"
-            isDisabled={email === "" || password === ""}
-            onClick={async () => {
-              await firebase
-                .auth()
-                .createUserWithEmailAndPassword(email, password)
-                .then(function (firebaseUser) {
-                  window.location.href = "/";
-                })
-                .catch(function (error) {
-                  const message = error.message;
-                  toast({
-                    title: "An error occurred.",
-                    description: message,
-                    status: "error",
-                    duration: 9000,
-                    isClosable: true,
-                  });
-                });
-            }}
-          >
-            Create account
-          </Button>
-        </Stack>
-      </Box>
-    </Flex>
+        {/* EMAIL */}
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            name="email"
+            value={email}
+            onChange={handleChangeInput}
+          />
+          <small id="emailHelp" className="form-text text-muted">
+            We'll never share your email with anyone else.
+          </small>
+        </div>
+
+        {/* PASSWORD */}
+        <div className="form-group">
+          <label htmlFor="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            className="form-control"
+            id="exampleInputPassword1"
+            name="password"
+            value={password}
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        {/* CONFIRM PASSWORD */}
+        <div className="form-group">
+          <label htmlFor="exampleInputPassword2">Confirm Password</label>
+          <input
+            type="password"
+            className="form-control"
+            id="exampleInputPassword2"
+            name="confirm_password"
+            value={confirm_password}
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary w-100">
+          Sign Up
+        </button>
+        <p className="my-2">
+          Already have an account?
+          <Link href="/login">
+            <a style={{ color: "crimson" }}> Login now</a>
+          </Link>
+        </p>
+      </form>
+    </div>
   );
-}
+};
+
+export default Register;

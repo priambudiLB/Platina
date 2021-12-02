@@ -1,11 +1,11 @@
-const valid = (name, email, password, cf_password) => {
-  if (!name || !email || !password) return "Please add all fields";
+const valid = (username, email, password, confirm_password) => {
+  if (!username || !email || !password) return "Please add all fields.";
 
-  if (!validateEmail(email)) return "Invalid emails";
+  if (!validateEmail(email)) return "Invalid email.";
 
-  if (password.length < 6) return "Password must be at least 6 characters.";
+  if (password.length < 6) return "Password must be 6 characters.";
 
-  if (password !== cf_password) return "Confirm password did not match";
+  if (password !== confirm_password) return "Confirm password did not match.";
 };
 
 function validateEmail(email) {

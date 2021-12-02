@@ -2,19 +2,16 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../css/layout.module.css";
 import Link from "next/link";
+// import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-// import React, { useEffect, useCallback } from "react";
-import { Flex, Box, Button, Text, Stack, Heading } from "@chakra-ui/core";
-import { useAuth } from "../services/auth";
-
-import tempe from "../assets/1copy.jpg";
+import tempe from "../assets/1.jpg";
 import map from "../assets/map.png";
 
 const HomePage = () => {
-  const { user } = useAuth();
   return (
     <>
+      {/* <Navbar /> */}
       <Head>
         <title>MENDOAN.ID</title>
       </Head>
@@ -23,15 +20,20 @@ const HomePage = () => {
       <div className={styles.textBox}>
         <div className={`container ${styles.intro}`}>
           <h1 className={styles.display4}>
-            Mau ada tamu datang atau ga, pesan gorengan di <span>Mendoan</span> aja!
+            Mau ada tamu datang atau ga, pesan gorengan di <span>Mendoan</span>{" "}
+            aja!
           </h1>
           <p>
-            Cobain deh, gorengan paling hits di <span>Indonesia</span> sekarang juga dari rumah kamu!
+            Cobain deh, gorengan paling hits di <span>Indonesia</span> sekarang
+            juga dari rumah kamu!
           </p>
           <div className={styles.tombol}>
-            {/* <Link href={isLogin ? "/product" : "/login"}> */}
             <Link href="/login">
-              <a type="button" className="btn btn-warning" style={{ borderRadius: "10px" }}>
+              <a
+                type="button"
+                className="btn btn-warning"
+                style={{ borderRadius: "10px" }}
+              >
                 <h6>Pesan Sekarang</h6>
               </a>
             </Link>
@@ -80,20 +82,53 @@ const HomePage = () => {
 
       {/* ====== PRODUCT MENU ======= */}
       {/* ======== MENU SPESIAL ========= */}
-      <div className="row justify-content-center" style={{ width: "100%", marginLeft: "0" }}>
+      <div
+        className="row justify-content-center"
+        style={{ width: "100%", marginLeft: "0" }}
+      >
         <div className={`col-12 ${styles.menuSpesial}`}>
           <h3>Menu Spesial</h3>
         </div>
+
+        {/* <div className="card" style={{ width: "18rem" }}>
+          <Image
+            src={tempe}
+            height={250}
+            width={250}
+            className="card-img-top"
+            alt=""
+          />
+          <div className="card-body">
+            <h5 className="card-title">Card title</h5>
+            <p className="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            <a href="#" className="btn btn-primary">
+              Go somewhere
+            </a>
+          </div>
+        </div> */}
+
         <div className={`card ${styles.cardMenu}`}>
           {/* <Image src={cr1} width="1000px" height="500px" /> */}
-          <Image src={tempe} className={`card-img-top ${styles.imgMenu}`} alt="" />
+          <Image
+            src={tempe}
+            height={250}
+            width={250}
+            className={`card-img-top ${styles.imgMenu}`}
+            alt=""
+          />
           <div className={`card-body ${styles.cardBody}`}>
             <div className={styles.topTitle}>
               <h4 className="card-title">Tahu isi daging sapi</h4>
               <h5 className="card-title">10K</h5>
               <p className="card-title">isi 3</p>
             </div>
-            <p className="card-text">Tahu isinya daging sapi cincang dengan bumbu spesial, terus digoreng dadakan</p>
+            <p className="card-text">
+              Tahu isinya daging sapi cincang dengan bumbu spesial, terus
+              digoreng dadakan
+            </p>
             <div className={styles.button}>
               <a href="#" className="btn btn-warning">
                 Pesan
@@ -103,7 +138,13 @@ const HomePage = () => {
         </div>
         <div className={`card ${styles.cardMenu}`}>
           {/* <Image src={cr1} width="1000px" height="500px" /> */}
-          <Image src={tempe} className={`card-img-top ${styles.imgMenu}`} alt="" />
+          <Image
+            src={tempe}
+            height={250}
+            width={250}
+            className={`card-img-top ${styles.imgMenu}`}
+            alt=""
+          />
           <div className={`card-body ${styles.cardBody}`}>
             <div className={styles.topTitle}>
               <h4 className="card-title">
@@ -113,7 +154,10 @@ const HomePage = () => {
               <h5 className="card-title">12K</h5>
               <p className="card-title">isi 3</p>
             </div>
-            <p className="card-text">Bakwan isinya cumi sapi cincang dengan bumbu spesial, terus digoreng dadakan</p>
+            <p className="card-text">
+              Bakwan isinya cumi sapi cincang dengan bumbu spesial, terus
+              digoreng dadakan
+            </p>
             <div className={styles.button}>
               <a href="#" className="btn btn-warning">
                 Pesan
@@ -123,14 +167,23 @@ const HomePage = () => {
         </div>
         <div className={`card ${styles.cardMenu}`}>
           {/* <Image src={cr1} width="1000px" height="500px" /> */}
-          <Image src={tempe} className={`card-img-top ${styles.imgMenu}`} alt="" />
+          <Image
+            src={tempe}
+            height={250}
+            width={250}
+            className={`card-img-top ${styles.imgMenu}`}
+            alt=""
+          />
           <div className={`card-body ${styles.cardBody}`}>
             <div className={styles.topTitle}>
               <h4 className="card-title">Tempe mendoan lemes</h4>
               <h5 className="card-title">8K</h5>
               <p className="card-title">isi 3</p>
             </div>
-            <p className="card-text">Tahu isinya daging sapi cincang dengan bumbu spesial, terus digoreng dadakan</p>
+            <p className="card-text">
+              Tempe mendoan lemes ukuran A4 dengan bumbu spesial, terus digoreng
+              dadakan
+            </p>
             <div className={styles.button}>
               <a href="#" className="btn btn-warning">
                 Pesan
@@ -141,20 +194,31 @@ const HomePage = () => {
       </div>
 
       {/* ======== GORENGAN POPULER ======== */}
-      <div className="row justify-content-center" style={{ width: "100%", marginLeft: "0" }}>
+      <div
+        className="row justify-content-center"
+        style={{ width: "100%", marginLeft: "0" }}
+      >
         <div className={`col-12 ${styles.menuPopuler}`}>
           <h3>Gorengan Populer</h3>
         </div>
         <div className={`card ${styles.cardMenu}`}>
           {/* <Image src={cr1} width="1000px" height="500px" /> */}
-          <Image src={tempe} className={`card-img-top ${styles.imgMenu}`} alt="" />
+          <Image
+            src={tempe}
+            height={250}
+            width={250}
+            className={`card-img-top ${styles.imgMenu}`}
+            alt=""
+          />
           <div className={`card-body ${styles.cardBody}`}>
             <div className={styles.topTitle}>
               <h4 className="card-title">Pisang goreng</h4>
               <h5 className="card-title">10K</h5>
               <p className="card-title">isi 3</p>
             </div>
-            <p className="card-text">Ya buah pisang digoreng pakai adonan spesial</p>
+            <p className="card-text">
+              Ya buah pisang digoreng pakai adonan spesial
+            </p>
             <div className={styles.button}>
               <a href="#" className="btn btn-warning">
                 Pesan
@@ -164,14 +228,22 @@ const HomePage = () => {
         </div>
         <div className={`card ${styles.cardMenu}`}>
           {/* <Image src={cr1} width="1000px" height="500px" /> */}
-          <Image src={tempe} className={`card-img-top ${styles.imgMenu}`} alt="" />
+          <Image
+            src={tempe}
+            height={250}
+            width={250}
+            className={`card-img-top ${styles.imgMenu}`}
+            alt=""
+          />
           <div className={`card-body ${styles.cardBody}`}>
             <div className={styles.topTitle}>
               <h4 className="card-title">Ubi ungu</h4>
               <h5 className="card-title">7K</h5>
               <p className="card-title">isi 3</p>
             </div>
-            <p className="card-text">Ya ubi ungu digoreng pakai adonan spesial</p>
+            <p className="card-text">
+              Ya ubi ungu digoreng pakai adonan spesial
+            </p>
             <div className={styles.button}>
               <a href="#" className="btn btn-warning">
                 Pesan
@@ -181,7 +253,13 @@ const HomePage = () => {
         </div>
         <div className={`card ${styles.cardMenu}`}>
           {/* <Image src={cr1} width="1000px" height="500px" /> */}
-          <Image src={tempe} className={`card-img-top ${styles.imgMenu}`} alt="" />
+          <Image
+            src={tempe}
+            height={250}
+            width={250}
+            className={`card-img-top ${styles.imgMenu}`}
+            alt=""
+          />
           <div className={`card-body ${styles.cardBody}`}>
             <div className={styles.topTitle}>
               <h4 className="card-title">Cireng original</h4>
@@ -200,7 +278,13 @@ const HomePage = () => {
         </div>
         <div className={`card ${styles.cardMenu}`}>
           {/* <Image src={cr1} width="1000px" height="500px" /> */}
-          <Image src={tempe} className={`card-img-top ${styles.imgMenu}`} alt="" />
+          <Image
+            src={tempe}
+            height={250}
+            width={250}
+            className={`card-img-top ${styles.imgMenu}`}
+            alt=""
+          />
           <div className={`card-body ${styles.cardBody}`}>
             <div className={styles.topTitle}>
               <h4 className="card-title">Cakwe</h4>
@@ -217,7 +301,13 @@ const HomePage = () => {
         </div>
         <div className={`card ${styles.cardMenu}`}>
           {/* <Image src={cr1} width="1000px" height="500px" /> */}
-          <Image src={tempe} className={`card-img-top ${styles.imgMenu}`} alt="" />
+          <Image
+            src={tempe}
+            height={250}
+            width={250}
+            className={`card-img-top ${styles.imgMenu}`}
+            alt=""
+          />
           <div className={`card-body ${styles.cardBody}`}>
             <div className={styles.topTitle}>
               <h4 className="card-title">Odading</h4>
@@ -234,7 +324,13 @@ const HomePage = () => {
         </div>
         <div className={`card ${styles.cardMenu}`}>
           {/* <Image src={cr1} width="1000px" height="500px" /> */}
-          <Image src={tempe} className={`card-img-top ${styles.imgMenu}`} alt="" />
+          <Image
+            src={tempe}
+            height={250}
+            width={250}
+            className={`card-img-top ${styles.imgMenu}`}
+            alt=""
+          />
           <div className={`card-body ${styles.cardBody}`}>
             <div className={styles.topTitle}>
               <h4 className="card-title">Tahu isi tempe</h4>

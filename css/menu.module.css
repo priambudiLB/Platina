@@ -1,0 +1,64 @@
+/* === CSS menu.js ===
+=== (pages/menu.js) === */
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-content: center;
+  margin: 20px 20px 20px 0;
+}
+
+/* ====== CSS MenuItem.js ======
+=== (components/product/menuitem.js) === */
+.card {
+  width: 20rem;
+  height: 28rem;
+  margin: 10px auto;
+  padding: 15px;
+  border: 3px solid #cfcfcf;
+  border-radius: 30px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cardBody {
+  margin-top: 20px;
+  border-top: 2px solid;
+  padding: 10px;
+}
+
+.cardImage {
+  height: 200px;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.cardTitle {
+  /* overflow: hidden; */
+  height: 55px;
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
+  display: flex;
+  align-items: flex-end;
+}
+.cardTitle h5 {
+  width: 170px;
+}
+
+.price {
+  font-size: 30px;
+}
+.price span {
+  font-size: 16px;
+}
+
+.cardText {
+  height: 70px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* CSS [id].js (pages/menu/[id].js */
+.imgFit {
+  object-fit: cover;
+  object-position: 0 50%;
+}

@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;400&display=swap");
-
 html,
 body {
   padding: 0;
@@ -17,6 +15,11 @@ a {
   box-sizing: border-box;
 }
 
+img {
+  object-fit: cover;
+}
+
+/* ======== SCROLL-BAR ========= */
 html::-webkit-scrollbar {
   width: 5px;
 }
@@ -29,3 +32,16 @@ html::-webkit-scrollbar-thumb {
   background: #e9b015;
   border-radius: 30px;
 }
+
+/* CSS DETAIL MENU pages/menu/id.js */
+.detail_page .img-thumbnail.active {
+  /* border-color: orangered; */
+  border: 3px solid #e9b015;
+  padding: 2px;
+}
+
+/* -======== LOADING ========- */
+@import url("../css/loading.module.css");
+
+/* ========= MENU =========== */
+/* @import url("../css/menu.module.css"); */

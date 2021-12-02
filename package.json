@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce",
+  "name": "mendoan",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,24 +8,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/core": "^0.8.0",
-    "@emotion/core": "^10.0.35",
-    "@emotion/styled": "^10.0.27",
-    "emotion-theming": "^10.0.27",
-    "firebase": "^8.0.0",
-    "firebase-admin": "^9.2.0",
-    "next": "12.0.3",
-    "nookies": "^2.5.2",
+    "bcrypt": "^5.0.0",
+    "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.14",
+    "next": "12.0.4",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-redux": "^7.2.6",
-    "react-router-dom": "^6.0.2",
-    "react-scripts": "^4.0.3",
-    "redux": "^4.1.2",
-    "redux-devtools-extension": "^2.13.9"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "eslint": "7.32.0",
-    "eslint-config-next": "12.0.3"
+    "eslint-config-next": "12.0.4"
   }
 }
