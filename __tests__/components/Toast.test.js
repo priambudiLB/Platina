@@ -6,7 +6,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Component from "../../components/Toast";
 
-describe("Loading", () => {
+describe("Toast", () => {
   it("Renders compoent", () => {
     const props = {
       message: {
