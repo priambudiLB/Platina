@@ -9,7 +9,7 @@ import styles from "../css/navbar.module.css";
 function Navbar() {
   const router = useRouter();
   const { state, dispatch } = useContext(DataContext);
-  const { auth } = state;
+  const { auth, cart } = state;
 
   const isActive = (r) => {
     if (r === router.pathname) {
@@ -30,14 +30,7 @@ function Navbar() {
     return (
       <>
         <li className="nav-item dropdown" style={{ marginTop: "8px" }}>
-          <a
-            className="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-toggle="dropdown"
-            aria-expanded="false"
-          >
+          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
             <img
               src={auth.user.avatar}
               alt={auth.user.avatar}
@@ -51,15 +44,8 @@ function Navbar() {
             />
             <span className={styles.username}>{auth.user.username}</span>
           </a>
-          <div
-            className="dropdown-menu"
-            aria-labelledby="navbarDropdownMenuLink"
-          >
-            <a
-              className="dropdown-item"
-              href="#"
-              style={{ textTransform: "capitalize" }}
-            >
+          <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a className="dropdown-item" href="#" style={{ textTransform: "capitalize" }}>
               Profile
             </a>
             <button className="dropdown-item" onClick={handleLogout}>
@@ -77,24 +63,11 @@ function Navbar() {
         <Link href="/">
           <a className={styles.navbarBrand}>Mendoan Indonesia</a>
         </Link>
-
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-
-        <div
-          className="collapse navbar-collapse justify-content-end"
-          id="navbarNavDropdown"
-        >
-          <ul className="navbar-nav">
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+          <ul className="navbar-nav p-1">
             {/* MENU */}
             <li className={styles.navLink}>
               <Link href="/menu">
@@ -107,8 +80,7 @@ function Navbar() {
               <li className={styles.navLink}>
                 <Link href="/login">
                   <a className={"nav-link" + isActive("/login")}>
-                    <i className="bi bi-person-fill" aria-hidden="true"></i>{" "}
-                    Login
+                    <i className="bi bi-person-fill" aria-hidden="true"></i> Login
                   </a>
                 </Link>
               </li>
@@ -120,7 +92,23 @@ function Navbar() {
             <li className={styles.cart}>
               <Link href="/cart">
                 <a className={"nav-link" + isActive("/cart")}>
-                  <i className="bi bi-bag-check" aria-hidden="true"></i>
+                  <i className="bi bi-bag-check position-ralative" aria-hidden="true">
+                    <span
+                      className="position-relative"
+                      style={{
+                        padding: "3px 6px",
+                        background: "#ed143dc2",
+                        borderRadius: "50%",
+                        top: "-10px",
+                        // right: "-10px",
+                        color: "white",
+                        fontSize: "14px",
+                      }}
+                    >
+                      {cart.length}
+                    </span>
+                  </i>
+                  Cart
                 </a>
               </Link>
             </li>

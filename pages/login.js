@@ -33,8 +33,7 @@ const Login = () => {
     dispatch({ type: "NOTIFY", payload: { loading: true } });
 
     const res = await postData("auth/login", userData);
-    if (res.err)
-      return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+    if (res.err) return dispatch({ type: "NOTIFY", payload: { error: res.err } });
 
     dispatch({ type: "NOTIFY", payload: { success: res.msg } });
 
@@ -63,36 +62,21 @@ const Login = () => {
       <form className={`mx-auto ${styles.formLog}`} onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            name="email"
-            value={email}
-            onChange={handleChangeInput}
-          />
+          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={email} onChange={handleChangeInput} />
           <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
+            We&apos;ll never share your email with anyone else.
           </small>
         </div>
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            name="password"
-            value={password}
-            onChange={handleChangeInput}
-          />
+          <input type="password" className="form-control" id="exampleInputPassword1" name="password" value={password} onChange={handleChangeInput} />
         </div>
 
         <button type="submit" className="btn btn-primary w-100">
           Login
         </button>
         <p className="my-2">
-          You don't have an account?
+          You don&apos;t have an account?
           <Link href="/sign-up">
             <a style={{ color: "crimson" }}> Register now</a>
           </Link>

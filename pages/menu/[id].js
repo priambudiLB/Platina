@@ -1,6 +1,8 @@
 import Head from "next/head";
-import { useState /* useEffect, useRef */ } from "react";
+import { useState, useContext } from "react";
 import { getData } from "../../utils/fetchData";
+import { DataContext } from "../../store/GlobalState";
+import { addToCart } from "../../store/Actions";
 
 import Link from "next/link";
 
@@ -8,8 +10,10 @@ import styles from "../../css/menu.module.css";
 
 const DetailMenu = (props) => {
   const [menu] = useState(props.menu);
-
   const [tab, setTab] = useState(0);
+
+  const { state, dispatch } = useContext(DataContext);
+  const { cart } = state;
   // const imgRef = useRef();
 
   const isActive = (index) => {
@@ -41,36 +45,18 @@ const DetailMenu = (props) => {
           </Head>
 
           <div className="col-md-6">
-            <img
-              src={menu.images[tab].url}
-              alt={menu.images[tab].url}
-              className={`d-block img-thumbnail rounded mt-4 w-100 ${styles.imgFit}`}
-              style={{ height: "350px" }}
-            />
+            <img src={menu.images[tab].url} alt={menu.images[tab].url} className={`d-block img-thumbnail rounded mt-4 w-100 ${styles.imgFit}`} style={{ height: "350px" }} />
 
-            <div
-              className="row mx-0"
-              style={{ cursor: "pointer" }} /* ref={imgRef} */
-            >
+            <div className="row mx-0" style={{ cursor: "pointer" }} /* ref={imgRef} */>
               {menu.images.map((img, index) => (
-                <img
-                  key={index}
-                  src={img.url}
-                  alt={img.url}
-                  className={`img-thumbnail rounded ${isActive(index)}`}
-                  style={{ height: "80px", width: "20%" }}
-                  onClick={() => setTab(index)}
-                />
+                <img key={index} src={img.url} alt={img.url} className={`img-thumbnail rounded ${isActive(index)}`} style={{ height: "80px", width: "20%" }} onClick={() => setTab(index)} />
               ))}
             </div>
           </div>
 
           <div className="col-md-6" style={{ paddingTop: "20px" }}>
             <h2 className="text-uppercase">{menu.title}</h2>
-            <p
-              className="text-uppercase"
-              style={{ fontSize: "40px", fontWeight: "700" }}
-            >
+            <p className="text-uppercase" style={{ fontSize: "40px", fontWeight: "700" }}>
               {menu.price}k
             </p>
 
@@ -89,7 +75,7 @@ const DetailMenu = (props) => {
               {menu.content} {menu.content} {menu.content}
             </div>
 
-            <button type="button" className="btn btn-warning d-block my-4 px-5">
+            <button type="button" className="btn btn-warning d-block my-4 px-5" onClick={() => dispatch(addToCart(menu, cart))}>
               Pesan
             </button>
           </div>

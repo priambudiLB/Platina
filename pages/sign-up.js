@@ -37,8 +37,7 @@ const Register = () => {
     dispatch({ type: "NOTIFY", payload: { loading: true } });
 
     const res = await postData("auth/sign-up", userData);
-    if (res.err)
-      return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+    if (res.err) return dispatch({ type: "NOTIFY", payload: { error: res.err } });
 
     return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
   };
@@ -57,57 +56,28 @@ const Register = () => {
         {/* USERNAME */}
         <div className="form-group">
           <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            name="username"
-            value={username}
-            onChange={handleChangeInput}
-          />
+          <input type="text" className="form-control" id="username" name="username" value={username} onChange={handleChangeInput} />
         </div>
 
         {/* EMAIL */}
         <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            name="email"
-            value={email}
-            onChange={handleChangeInput}
-          />
+          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={email} onChange={handleChangeInput} />
           <small id="emailHelp" className="form-text text-muted">
-            We'll never share your email with anyone else.
+            We&apos;ll never share your email with anyone else.
           </small>
         </div>
 
         {/* PASSWORD */}
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            name="password"
-            value={password}
-            onChange={handleChangeInput}
-          />
+          <input type="password" className="form-control" id="exampleInputPassword1" name="password" value={password} onChange={handleChangeInput} />
         </div>
 
         {/* CONFIRM PASSWORD */}
         <div className="form-group">
           <label htmlFor="exampleInputPassword2">Confirm Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword2"
-            name="confirm_password"
-            value={confirm_password}
-            onChange={handleChangeInput}
-          />
+          <input type="password" className="form-control" id="exampleInputPassword2" name="confirm_password" value={confirm_password} onChange={handleChangeInput} />
         </div>
 
         <button type="submit" className="btn btn-primary w-100">
