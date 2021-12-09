@@ -5,12 +5,12 @@ import Modal from "./Modal";
 
 function Layout({ children }) {
   return (
-    <div>
+    <>
       <Navbar />
       <Notify />
       <Modal />
       {children}
-    </div>
+    </>
   );
 }
 

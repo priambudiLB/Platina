@@ -13,19 +13,14 @@ const Loading = () => {
       }}
     >
       <div className={styles.configure}>
-        <div className={styles.ring}></div>
-        <div className={styles.ring}></div>
-        <div className={styles.ring}></div>
-        <p>Loading...</p>
+        <div className={styles.centerize}>
+          <div className={styles.section}>
+            <div className={styles.bgColor}>
+              <div className={styles.loader}></div>
+            </div>
+          </div>
+        </div>
       </div>
-      {/* <div className="spinner-box">
-        <div className={styles.border1}>
-          <div className={styles.bg}></div>
-        </div>
-        <div className={styles.border2}>
-          <div className={styles.bg}></div>
-        </div>
-      </div> */}
     </div>
   );
 };

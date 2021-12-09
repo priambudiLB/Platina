@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { DataContext } from "../store/GlobalState";
@@ -29,25 +29,49 @@ function Navbar() {
   const loggedRouter = () => {
     return (
       <>
-        <li className="nav-item dropdown" style={{ marginTop: "8px" }}>
-          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+        <li className="nav-item dropdown" style={{ marginTop: "5px" }}>
+          <a
+            className="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
             <img
               src={auth.user.avatar}
               alt={auth.user.avatar}
               style={{
                 borderRadius: "50%",
-                width: "30px",
-                height: "30px",
+                width: "35px",
+                height: "35px",
                 transform: "translateY(-3px)",
                 marginRight: "5px",
               }}
             />
             <span className={styles.username}>{auth.user.username}</span>
           </a>
-          <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a className="dropdown-item" href="#" style={{ textTransform: "capitalize" }}>
-              Profile
-            </a>
+          <div
+            className="dropdown-menu"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <Link href="/profile">
+              <a
+                className="dropdown-item"
+                style={{ textTransform: "capitalize" }}
+              >
+                Profile
+              </a>
+            </Link>
+            <Link href="/orders">
+              <a
+                className="dropdown-item"
+                style={{ textTransform: "capitalize" }}
+              >
+                Orders
+              </a>
+            </Link>
             <button className="dropdown-item" onClick={handleLogout}>
               Logout
             </button>
@@ -57,65 +81,102 @@ function Navbar() {
     );
   };
 
-  return (
-    <nav className={`navbar navbar-expand-lg navbar-light ${styles.navbar}`}>
-      <div className="container">
-        <Link href="/">
-          <a className={styles.navbarBrand}>Mendoan Indonesia</a>
-        </Link>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-          <ul className="navbar-nav p-1">
-            {/* MENU */}
-            <li className={styles.navLink}>
-              <Link href="/menu">
-                <a className={"nav-link" + isActive("/menu")}>MENU</a>
-              </Link>
-            </li>
+  // const changeBackground = () => {
+  //   console.log(window.scrollY);
+  //   if (window.scrollY >= 80) {
+  //     setNavbar(true);
+  //   } else {
+  //     setNavbar(false);
+  //   }
+  // };
 
-            {/* LOGIN */}
-            {Object.keys(auth).length === 0 ? (
+  // useEffect(() => {
+  //   changeBackground();
+  //   window.addEventListener("scroll", changeBackground);
+  // });
+
+  return (
+    <>
+      <nav
+        // className={navbar ? "navbar active" : "navbar"}
+        className={`navbar navbar-expand-lg navbar-light ${styles.navbar}`}
+      >
+        <div className="container">
+          <Link href="/">
+            <a className={styles.navbarBrand}>Mendoan Indonesia</a>
+          </Link>
+
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNavDropdown"
+          >
+            <ul className="navbar-nav p-1">
+              {/* MENU */}
               <li className={styles.navLink}>
-                <Link href="/login">
-                  <a className={"nav-link" + isActive("/login")}>
-                    <i className="bi bi-person-fill" aria-hidden="true"></i> Login
+                <Link href="/menu">
+                  <a className={"nav-link" + isActive("/menu")}>MENU</a>
+                </Link>
+              </li>
+
+              {/* LOGIN */}
+              {Object.keys(auth).length === 0 ? (
+                <li className={styles.navLink}>
+                  <Link href="/login">
+                    <a className={"nav-link" + isActive("/login")}>
+                      <i className="bi bi-person-fill" aria-hidden="true"></i>{" "}
+                      Login
+                    </a>
+                  </Link>
+                </li>
+              ) : (
+                loggedRouter()
+              )}
+
+              {/* CART */}
+              <li className={styles.cart}>
+                <Link href="/cart">
+                  <a className={"nav-link" + isActive("/cart")}>
+                    <i
+                      className="bi bi-bag-check position-relative"
+                      aria-hidden="true"
+                    >
+                      <span
+                        className="position-absolute"
+                        style={{
+                          fontSize: "14px",
+                          fontStyle: "normal",
+                          fontWeight: "bold",
+                          padding: "0px 6px",
+                          background: "#ed143dc2",
+                          borderRadius: "50%",
+                          top: "-10px",
+                          right: "-10px",
+                          color: "white",
+                        }}
+                      >
+                        {cart.length}
+                      </span>
+                    </i>
                   </a>
                 </Link>
               </li>
-            ) : (
-              loggedRouter()
-            )}
-
-            {/* CART */}
-            <li className={styles.cart}>
-              <Link href="/cart">
-                <a className={"nav-link" + isActive("/cart")}>
-                  <i className="bi bi-bag-check position-ralative" aria-hidden="true">
-                    <span
-                      className="position-relative"
-                      style={{
-                        padding: "3px 6px",
-                        background: "#ed143dc2",
-                        borderRadius: "50%",
-                        top: "-10px",
-                        // right: "-10px",
-                        color: "white",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {cart.length}
-                    </span>
-                  </i>
-                  Cart
-                </a>
-              </Link>
-            </li>
-          </ul>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
 

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import profile from "../assets/img_568656.png";
 
 const userSchema = new mongoose.Schema(
   {
@@ -28,7 +27,7 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String,
       default:
-        "https://res.cloudinary.com/dxzst64gw/image/upload/v1638020966/img_568656_lgfczb.png",
+        "https://res.cloudinary.com/mendoanindonesia/image/upload/v1638602986/avatar_d6aglv.png",
     },
   },
   {

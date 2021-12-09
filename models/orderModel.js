@@ -7,13 +7,18 @@ const orderSchema = new mongoose.Schema(
       ref: "user",
     },
     address: String,
-    mobile: String,
+    phoneNumber: String,
     cart: Array,
     total: Number,
     delivered: {
       type: Boolean,
       default: false,
     },
+    paid: {
+      type: Boolean,
+      default: false,
+    },
+    dateOfPayment: Date,
   },
   {
     timestamps: true,

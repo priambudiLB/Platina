@@ -33,11 +33,13 @@ html::-webkit-scrollbar-thumb {
   border-radius: 30px;
 }
 
+::-webkit-file-upload-button {
+  cursor: pointer;
+}
+
 /* CSS DETAIL MENU pages/menu/id.js */
 .detail_page .img-thumbnail.active {
-  /* border-color: orangered; */
-  border: 3px solid #e9b015;
-  padding: 2px;
+  border: 2px solid #e9b015;
 }
 
 /* -======== LOADING ========- */
@@ -45,3 +47,6 @@ html::-webkit-scrollbar-thumb {
 
 /* ========= MENU =========== */
 /* @import url("../css/menu.module.css"); */
+
+/* -======== LOADING ========- */
+/* @import url("../css/profile.module.css"); */

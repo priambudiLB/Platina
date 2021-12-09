@@ -1,113 +1,204 @@
 import Head from "next/head";
 import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../store/GlobalState";
-import CartItem from "../components/CartItem";
+import CartMenu from "../components/CartMenu";
 import Link from "next/link";
-import { getData } from "../utils/fetchData";
-import PaypalBtn from "./paypalBtn";
+import { getData, postData } from "../utils/fetchData";
+import { useRouter } from "next/router";
+// import PaypalBtn from "./paypalBtn";
 
-const Cart = () => {
+import styles from "../css/cart.module.css";
+// import { addToCart } from "../store/Actions";
+
+// import Navbar from "../components/Navbar";
+
+const Cart = (props) => {
   const { state, dispatch } = useContext(DataContext);
-  const { cart, auth } = state;
+  const { cart, auth, orders } = state;
 
   const [total, setTotal] = useState(0);
-  const [address, setAddress] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [payment, setPayment] = useState(false);
+
+  const [address, setAddress] = useState();
+  const [phoneNumber, setPhoneNumber] = useState();
+  // const [payment, setPayment] = useState(false);
+
+  const [callback, setCallback] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const getTotal = () => {
-      const res = cart.reduce((prev, item) => {
-        return prev + item.price * item.quantity;
+      const res = cart.reduce((prev, menu) => {
+        return prev + menu.price * menu.quantity;
       }, 0);
-
       setTotal(res);
     };
-
     getTotal();
   }, [cart]);
 
   useEffect(() => {
-    const cartLocal = JSON.parse(localStorage.getItem("__mendoan__cart"));
+    const cartLocal = JSON.parse(
+      localStorage.getItem("__next__cart01__mendoan")
+    );
     if (cartLocal && cartLocal.length > 0) {
-      let newArr = [];
+      let newArray = [];
       const updateCart = async () => {
-        for (const item of cartLocal) {
-          const res = await getData("menu/${item._id}");
+        for (const menu of cartLocal) {
+          const res = await getData(`product/${menu._id}`);
           const { _id, title, images, price, inStock, sold } = res.menu;
           if (inStock > 0) {
-            newArr.push({
+            newArray.push({
               _id,
               title,
               images,
               price,
               inStock,
               sold,
-              quantity: item.quantity > inStock ? 1 : item.quantity,
+              quantity: menu.quantity > inStock ? 1 : menu.quantity,
             });
           }
         }
-
-        dispatch({ type: "ADD_CART", payload: newArr });
+        dispatch({ type: "ADD_CART", payload: newArray });
       };
 
       updateCart();
     }
-  }, [dispatch]);
+  }, [callback]);
 
-  const handlePayment = () => {
-    if (!address || !mobile) return dispatch({ type: "NOTIFY", payload: { error: "Mohon masukkan alamat dan nomor telephone anda." } });
-    setPayment(true);
+  const handlePayment = async () => {
+    if (!address || !phoneNumber)
+      return dispatch({
+        type: "NOTIFY",
+        payload: { error: "Lengkapi alamat dan nomor handphone anda!" },
+      });
+    let newCart = [];
+    for (const menu of cart) {
+      const res = await getData(`product/${menu._id}`);
+      if (res.menu.inStock - menu.quantity >= 0) {
+        newCart.push(menu);
+      }
+    }
+    if (newCart.length < cart.length) {
+      setCallback(!callback);
+      return dispatch({
+        type: "NOTIFY",
+        payload: {
+          error:
+            "Menu sedang kosong atau jumlah yang anda masukkan tidak sesuai.",
+        },
+      });
+    }
+
+    dispatch({
+      type: "NOTIFY",
+      payload: { loading: true },
+    });
+    postData("order", { address, phoneNumber, cart, total }, auth.token).then(
+      (res) => {
+        if (res.err)
+          return dispatch({
+            type: "NOTIFY",
+            payload: { error: res.err },
+          });
+
+        dispatch({ type: "ADD_CART", payload: [] });
+
+        const newOrder = {
+          ...res.newOrder,
+          user: auth.user,
+        };
+
+        dispatch({
+          type: "ADD_ORDERS",
+          payload: [...orders, newOrder],
+        });
+        dispatch({
+          type: "NOTIFY",
+          payload: { success: res.msg },
+        });
+        return router.push(`/order/${res.newOrder._id}`);
+      }
+    );
   };
 
   if (cart.length === 0)
     return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img className="img-responsive w-90" src="/empty_bag.jpg" alt="kosong" />
-      // <div className="justify-content-center" style={{ width: "100%" }}>
-      //   <i className="bi bi-cart-x-fill"></i>
-      // </div>
+      <>
+        <Head>
+          <title>Cart</title>
+        </Head>
+        <div className={styles.cart}>
+          <i className="bi bi-cart-x-fill"></i>
+          <p>Tidak ada pesanan</p>
+        </div>
+      </>
     );
+
   return (
-    <div className="row mx-auto">
+    <>
       <Head>
-        <title>Keranjang</title>
+        <title>Cart</title>
       </Head>
-      <div className="col-md-8 text-secondary table-responsive my-3">
-        <h2 className="text-uppercase">Keranjang Belanja</h2>
-        <table className="table my-3">
-          <tbody>
-            {cart.map((item) => (
-              <CartItem key={item._id} item={item} dispatch={dispatch} cart={cart} />
-            ))}
-          </tbody>
-        </table>
+      {/* <Navbar /> */}
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 table-responsive my-5">
+            <h3 className="text-capitalize">Pesanan</h3>
+
+            <table className="table my-3">
+              <tbody>
+                {cart.map((menu) => (
+                  <CartMenu
+                    key={menu._id}
+                    menu={menu}
+                    dispatch={dispatch}
+                    cart={cart}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="col-md-4 my-5 text-right">
+            <form>
+              <h2>Pembayaran</h2>
+
+              <label htmlFor="address">Alamat</label>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                className="form-control mb-2"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+
+              <label htmlFor="phoneNumber">No Handphone</label>
+              <input
+                type="text"
+                name="phoneNumber"
+                id="phoneNumber"
+                className="form-control mb-2"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
+            </form>
+
+            <h3>
+              Total: <span className="text-success">{total}K</span>
+            </h3>
+
+            <Link href={auth.user ? "#!" : "/login"}>
+              <a
+                className="btn btn-info text-uppercase my-2"
+                onClick={handlePayment}
+              >
+                Lanjutkan Pembayaran
+              </a>
+            </Link>
+          </div>
+        </div>
       </div>
-
-      <div className="col-md-4 my-3 text-right text-uppercase text-secondary">
-        <form>
-          <h2>Pengiriman</h2>
-          <label htmlFor="address">Alamat</label>
-          <input type="text" name="address" id="address" className="form-control mb-2" value={address} onChange={(e) => setAddress(e.target.value)} />
-
-          <label htmlFor="mobile">Nomor Hp</label>
-          <input type="text" name="mobile" id="mobile" className="form-control mb-2" value={mobile} onChange={(e) => setMobile(e.target.value)} />
-        </form>
-        <h3>
-          Total: <span className="text-danger">${total}</span>
-        </h3>
-
-        {payment ? (
-          <PaypalBtn total={total} address={address} mobile={mobile} state={state} dispatch={dispatch} />
-        ) : (
-          <Link href={auth.user ? "#!" : "/signin"}>
-            <a className="btn btn-dark my-2" onClick={handlePayment}>
-              Lanjut ke pembayaran
-            </a>
-          </Link>
-        )}
-      </div>
-    </div>
+    </>
   );
 };
 

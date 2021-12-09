@@ -8,33 +8,54 @@ connectDB();
 export default async (req, res) => {
   switch (req.method) {
     case "POST":
-      await createdOrder(req, res);
+      await createOrder(req, res);
+      break;
+    case "GET":
+      await getOrders(req, res);
       break;
   }
 };
 
-const createdOrder = async (req, res) => {
+const getOrders = async (req, res) => {
   try {
     const result = await auth(req, res);
-    const { address, mobile, cart, total } = req.body;
+    let orders;
+    if (result.role !== "admin") {
+      orders = await Orders.find({ user: result.id }).populate(
+        "user",
+        "-password"
+      );
+    } else {
+      orders = await Orders.find().populate("user", "-password");
+    }
+    res.json({ orders });
+  } catch (err) {
+    return res.status(500).json({ err: err.message });
+  }
+};
+
+const createOrder = async (req, res) => {
+  try {
+    const result = await auth(req, res);
+    const { address, phoneNumber, cart, total } = req.body;
 
     const newOrder = new Orders({
       user: result.id,
       address,
-      mobile,
+      phoneNumber,
       cart,
       total,
     });
 
     console.log(cart);
-    cart.filter((item) => {
-      return sold(item._id, item.quantity, item.inStock, item.sold);
+    cart.filter((menu) => {
+      return sold(menu._id, menu.quantity, menu.inStock, menu.sold);
     });
 
     await newOrder.save();
 
     res.json({
-      msg: "Pembayaran berhasil",
+      msg: "Pesanan berhasil! Silahkan lanjutkan pembayaran.",
       newOrder,
     });
   } catch (err) {

@@ -7,20 +7,23 @@ import MenuItem from "../components/product/MenuItem";
 import Link from "next/link";
 
 import styles from "../css/menu.module.css";
+import BackButton from "../components/BackButton";
 
 const Menu = (props) => {
   const [menu, setMenu] = useState(props.menu);
-  const [minuman, setMinuman] = useState(props.minuman);
 
   return (
     <>
-      <div className="container">
+      <Link href="/">
+        <a>
+          <BackButton />
+        </a>
+      </Link>
+
+      <div className="container" style={{ marginTop: "10px" }}>
         <Head>
           <title>Menu</title>
         </Head>
-        <Link href="/">
-          <button>Back</button>
-        </Link>
 
         <div className={styles.menu}>
           {menu.length === 0 ? (

@@ -53,7 +53,7 @@
 }
 
 .tombol {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 /* ======== PANEL ======== */
@@ -65,7 +65,7 @@
   background-color: white;
   padding: 20px;
   z-index: 3;
-  height: 300px;
+  height: 320px;
   display: flex;
   justify-content: center;
 }
@@ -228,7 +228,7 @@
 /* ======== DEKSTOP VERSION ======== */
 @media (min-width: 992px) {
   .textBox {
-    margin-top: -225px;
+    margin-top: -235px;
     height: 600px;
   }
   .textBox .display4 {
