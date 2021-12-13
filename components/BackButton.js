@@ -1,12 +1,12 @@
-import styles from "../css/back.module.css";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable func-names */
+import styles from '../css/back.module.css';
 
-const BackButton = () => {
+const BackButton = function () {
   return (
-    <>
-      <button type="button" className={`btn ${styles.back}`}>
-        <i className="bi bi-arrow-left-circle"></i>
-      </button>
-    </>
+    <button type="button" className={`btn ${styles.back}`}>
+      <i className="bi bi-arrow-left-circle" />
+    </button>
   );
 };
 

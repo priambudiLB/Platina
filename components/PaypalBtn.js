@@ -1,9 +1,16 @@
-import { useEffect, useRef, useContext } from "react";
-import { patchData } from "../utils/fetchData";
-import { DataContext } from "../store/GlobalState";
-import { updateMenu } from "../store/Actions";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable max-len */
+/* eslint-disable react/prop-types */
+/* eslint-disable func-names */
+import { useEffect, useRef, useContext } from 'react';
+import { patchData } from '../utils/fetchData';
+import { DataContext } from '../store/GlobalState';
+import { updateMenu } from '../store/Actions';
 
-const PaypalBtn = ({ order }) => {
+const PaypalBtn = function ({ order }) {
   const refPaypalBtn = useRef();
   const { state, dispatch } = useContext(DataContext);
   const { auth, orders } = state;
@@ -12,12 +19,12 @@ const PaypalBtn = ({ order }) => {
     paypal
       .Buttons({
         style: {
-          shape: "rect",
-          color: "silver",
-          layout: "vertical",
-          label: "paypal",
+          shape: 'rect',
+          color: 'silver',
+          layout: 'vertical',
+          label: 'paypal',
         },
-        createOrder: function (data, actions) {
+        createOrder(data, actions) {
           // This function sets up the details of the transaction, including the amount and line item details.
           return actions.order.create({
             purchase_units: [
@@ -29,19 +36,20 @@ const PaypalBtn = ({ order }) => {
             ],
           });
         },
-        onApprove: function (data, actions) {
+        onApprove(data, actions) {
           // This function captures the funds from the transaction.
-          return actions.order.capture().then(function (details) {
+          return actions.order.capture().then((details) => {
             dispatch({
-              type: "NOTIFY",
+              type: 'NOTIFY',
               payload: { loading: true },
             });
             patchData(`order/${order._id}`, null, auth.token).then((res) => {
-              if (res.err)
+              if (res.err) {
                 return dispatch({
-                  type: "NOTIFY",
+                  type: 'NOTIFY',
                   payload: { error: res.err },
                 });
+              }
 
               dispatch(
                 updateMenu(
@@ -52,12 +60,12 @@ const PaypalBtn = ({ order }) => {
                     paid: true,
                     dateOfPayment: new Date().toISOString(),
                   },
-                  "ADD_ORDERS"
-                )
+                  'ADD_ORDERS',
+                ),
               );
 
               return dispatch({
-                type: "NOTIFY",
+                type: 'NOTIFY',
                 payload: { success: res.msg },
               });
             });
@@ -70,7 +78,7 @@ const PaypalBtn = ({ order }) => {
       .render(refPaypalBtn.current);
   }, []);
 
-  return <div ref={refPaypalBtn}></div>;
+  return <div ref={refPaypalBtn} />;
 };
 
 export default PaypalBtn;

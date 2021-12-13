@@ -1,14 +1,16 @@
-import { useContext } from "react";
-import { DataContext } from "../store/GlobalState";
-import { deleteMenu } from "../store/Actions";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable func-names */
+import { useContext } from 'react';
+import { DataContext } from '../store/GlobalState';
+import { deleteMenu } from '../store/Actions';
 
-const Modal = () => {
+const Modal = function () {
   const { state, dispatch } = useContext(DataContext);
   const { modal } = state;
 
   const handleSubmit = () => {
-    dispatch(deleteMenu(modal.data, modal.id, "ADD_CART"));
-    dispatch({ type: "ADD_MODAL", payload: {} });
+    dispatch(deleteMenu(modal.data, modal.id, 'ADD_CART'));
+    dispatch({ type: 'ADD_MODAL', payload: {} });
   };
 
   return (

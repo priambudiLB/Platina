@@ -1,14 +1,16 @@
-import Head from "next/head";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable func-names */
+import Head from 'next/head';
 
 // import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import TextBox from "../components/TextBox";
-import Panel from "../components/Panel";
-import MenuSpesial from "../components/MenuSpesial";
-import GorenganPopuler from "../components/GorenganPopuler";
-import Map from "../components/Map";
+import Footer from '../components/Footer';
+import TextBox from '../components/TextBox';
+import Panel from '../components/Panel';
+import MenuSpesial from '../components/MenuSpesial';
+import GorenganPopuler from '../components/GorenganPopuler';
+import Map from '../components/Map';
 
-const HomePage = () => {
+const HomePage = function () {
   return (
     <>
       {/* <Navbar /> */}

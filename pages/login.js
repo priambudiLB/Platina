@@ -1,17 +1,22 @@
-import Head from "next/head";
-import Link from "next/link";
-import { useState, useContext, useEffect } from "react";
-import { DataContext } from "../store/GlobalState";
-import { postData } from "../utils/fetchData";
-import Cookie from "js-cookie";
-import { useRouter } from "next/router";
+/* eslint-disable func-names */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable consistent-return */
+import Head from 'next/head';
+import Link from 'next/link';
+import { useState, useContext, useEffect } from 'react';
+import Cookie from 'js-cookie';
+import { useRouter } from 'next/router';
+import { DataContext } from '../store/GlobalState';
+import { postData } from '../utils/fetchData';
 
-import styles from "../css/relog.module.css";
+import styles from '../css/relog.module.css';
 
-const Login = () => {
+const Login = function () {
   const initialState = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
   const [userData, setUserData] = useState(initialState);
   const { email, password } = userData;
@@ -24,35 +29,34 @@ const Login = () => {
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
-    dispatch({ type: "NOTIFY", payload: {} });
+    dispatch({ type: 'NOTIFY', payload: {} });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch({ type: "NOTIFY", payload: { loading: true } });
+    dispatch({ type: 'NOTIFY', payload: { loading: true } });
 
-    const res = await postData("auth/login", userData);
-    if (res.err)
-      return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+    const res = await postData('auth/login', userData);
+    if (res.err) return dispatch({ type: 'NOTIFY', payload: { error: res.err } });
 
-    dispatch({ type: "NOTIFY", payload: { success: res.msg } });
+    dispatch({ type: 'NOTIFY', payload: { success: res.msg } });
 
     dispatch({
-      type: "AUTH",
+      type: 'AUTH',
       payload: { token: res.access_token, user: res.user },
     });
 
-    Cookie.set("refreshtoken", res.refresh_token, {
-      path: "api/auth/accessToken",
+    Cookie.set('refreshtoken', res.refresh_token, {
+      path: 'api/auth/accessToken',
       expires: 7,
     });
 
-    localStorage.setItem("firstLogin", true);
+    localStorage.setItem('firstLogin', true);
   };
 
   useEffect(() => {
-    if (Object.keys(auth).length !== 0) router.push("/menu");
+    if (Object.keys(auth).length !== 0) router.push('/menu');
   }, [auth]);
 
   return (
@@ -62,7 +66,7 @@ const Login = () => {
       </Head>
       <Link href="/">
         <button type="button" className={`btn ${styles.back}`}>
-          <i className="bi bi-box-arrow-left"></i>
+          <i className="bi bi-box-arrow-left" />
         </button>
       </Link>
 
@@ -100,7 +104,7 @@ const Login = () => {
         <p className="my-2">
           You don&apos;t have an account?
           <Link href="/sign-up">
-            <a style={{ color: "crimson" }}> Register now</a>
+            <a style={{ color: 'crimson' }}> Register now</a>
           </Link>
         </p>
       </form>

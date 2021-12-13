@@ -1,8 +1,12 @@
-import "../styles/globals.css";
-import Layout from "../components/Layout";
-import { DataProvider } from "../store/GlobalState";
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
+/* eslint-disable func-names */
+import '../styles/globals.css';
+import Layout from '../components/Layout';
+import { DataProvider } from '../store/GlobalState';
 
-function MyApp({ Component, pageProps }) {
+const MyApp = function ({ Component, pageProps }) {
   return (
     <DataProvider>
       <Layout>
@@ -10,6 +14,6 @@ function MyApp({ Component, pageProps }) {
       </Layout>
     </DataProvider>
   );
-}
+};
 
 export default MyApp;

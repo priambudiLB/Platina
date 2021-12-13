@@ -1,23 +1,27 @@
-import connectDB from "../../../utils/connectDB";
-import Users from "../../../models/userModel";
-import jwt from "jsonwebtoken";
-import { createAccessToken } from "../../../utils/generateToken";
+/* eslint-disable no-undef */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable consistent-return */
+import jwt from 'jsonwebtoken';
+import connectDB from '../../../utils/connectDB';
+import Users from '../../../models/userModel';
+import { createAccessToken } from '../../../utils/generateToken';
 
 connectDB();
 
 export default async (req, res) => {
   try {
     const rf_token = req.cookies.refreshtoken;
-    if (!rf_token) return res.status(400).json({ err: "Please login now!" });
+    if (!rf_token) return res.status(400).json({ err: 'Please login now!' });
 
     const result = jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET);
-    if (!result)
+    if (!result) {
       return res
         .status(400)
-        .json({ err: "Your token is incorrect or has expired." });
+        .json({ err: 'Your token is incorrect or has expired.' });
+    }
 
     const user = await Users.findById(result.id);
-    if (!user) return res.status(400).json({ err: "User not found." });
+    if (!user) return res.status(400).json({ err: 'User not found.' });
 
     const access_token = createAccessToken({ id: user._id });
     res.json({

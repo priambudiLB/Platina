@@ -1,12 +1,14 @@
-import connectDB from "../../../utils/connectDB";
-import Users from "../../../models/userModel";
-import auth from "../../../middleware/auth";
+/* eslint-disable consistent-return */
+/* eslint-disable default-case */
+import connectDB from '../../../utils/connectDB';
+import Users from '../../../models/userModel';
+import auth from '../../../middleware/auth';
 
 connectDB();
 
 export default async (req, res) => {
   switch (req.method) {
-    case "PATCH":
+    case 'PATCH':
       await uploadInfo(req, res);
       break;
   }
@@ -19,11 +21,11 @@ const uploadInfo = async (req, res) => {
 
     const newUser = await Users.findOneAndUpdate(
       { _id: result.id },
-      { username, avatar }
+      { username, avatar },
     );
 
     res.json({
-      msg: "Update berhasil.",
+      msg: 'Update berhasil.',
       user: {
         username,
         avatar,

@@ -1,13 +1,15 @@
-import connectDB from "../../../utils/connectDB";
-import Users from "../../../models/userModel";
-import auth from "../../../middleware/auth";
-import bcrypt from "bcrypt";
+/* eslint-disable consistent-return */
+/* eslint-disable default-case */
+import bcrypt from 'bcrypt';
+import connectDB from '../../../utils/connectDB';
+import Users from '../../../models/userModel';
+import auth from '../../../middleware/auth';
 
 connectDB();
 
 export default async (req, res) => {
   switch (req.method) {
-    case "PATCH":
+    case 'PATCH':
       await resetPassword(req, res);
       break;
   }
@@ -21,10 +23,10 @@ const resetPassword = async (req, res) => {
 
     await Users.findOneAndUpdate(
       { _id: result.id },
-      { password: passwordHash }
+      { password: passwordHash },
     );
 
-    res.json({ msg: "Update berhasil." });
+    res.json({ msg: 'Update berhasil.' });
   } catch (err) {
     return res.status(500).json({ err: err.message });
   }

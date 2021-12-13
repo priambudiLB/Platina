@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable import/no-mutable-exports */
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
@@ -32,7 +34,7 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 let Dataset = mongoose.models.user || mongoose.model("user", userSchema);

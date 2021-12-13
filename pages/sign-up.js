@@ -1,22 +1,28 @@
-import Head from "next/head";
-import Link from "next/link";
-import { useState, useContext, useEffect } from "react";
-import valid from "../utils/valid";
-import { DataContext } from "../store/GlobalState";
-import { postData } from "../utils/fetchData";
-import { useRouter } from "next/router";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable func-names */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-filename-extension */
+import Head from 'next/head';
+import Link from 'next/link';
+import { useState, useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import valid from '../utils/valid';
+import { DataContext } from '../store/GlobalState';
+import { postData } from '../utils/fetchData';
 
-import styles from "../css/relog.module.css";
+import styles from '../css/relog.module.css';
 
-const Register = () => {
+const Register = function () {
   const initialState = {
-    username: "",
-    email: "",
-    password: "",
-    confirm_password: "",
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   };
   const [userData, setUserData] = useState(initialState);
-  const { username, email, password, confirm_password } = userData;
+  const {
+    username, email, password, confirmPassword,
+  } = userData;
 
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
@@ -26,25 +32,24 @@ const Register = () => {
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
-    dispatch({ type: "NOTIFY", payload: {} });
+    dispatch({ type: 'NOTIFY', payload: {} });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errMsg = valid(username, email, password, confirm_password);
-    if (errMsg) return dispatch({ type: "NOTIFY", payload: { error: errMsg } });
+    const errMsg = valid(username, email, password, confirmPassword);
+    if (errMsg) return dispatch({ type: 'NOTIFY', payload: { error: errMsg } });
 
-    dispatch({ type: "NOTIFY", payload: { loading: true } });
+    dispatch({ type: 'NOTIFY', payload: { loading: true } });
 
-    const res = await postData("auth/sign-up", userData);
-    if (res.err)
-      return dispatch({ type: "NOTIFY", payload: { error: res.err } });
+    const res = await postData('auth/sign-up', userData);
+    if (res.err) return dispatch({ type: 'NOTIFY', payload: { error: res.err } });
 
-    return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
+    return dispatch({ type: 'NOTIFY', payload: { success: res.msg } });
   };
 
   useEffect(() => {
-    if (Object.keys(auth).length !== 0) router.push("/login");
+    if (Object.keys(auth).length !== 0) router.push('/login');
   }, [auth]);
 
   return (
@@ -54,7 +59,7 @@ const Register = () => {
       </Head>
       <Link href="/">
         <button type="button" className={`btn ${styles.back}`}>
-          <i className="bi bi-box-arrow-left"></i>
+          <i className="bi bi-box-arrow-left" />
         </button>
       </Link>
 
@@ -109,8 +114,8 @@ const Register = () => {
             type="password"
             className="form-control"
             id="exampleInputPassword2"
-            name="confirm_password"
-            value={confirm_password}
+            name="confirmPassword"
+            value={confirmPassword}
             onChange={handleChangeInput}
           />
         </div>
@@ -121,7 +126,7 @@ const Register = () => {
         <p className="my-2">
           Already have an account?
           <Link href="/login">
-            <a style={{ color: "crimson" }}> Login now</a>
+            <a style={{ color: 'crimson' }}> Login now</a>
           </Link>
         </p>
       </form>

@@ -1,9 +1,11 @@
-import { useContext } from "react";
-import { DataContext } from "../store/GlobalState";
-import Loading from "./Loading";
-import Toast from "./Toast";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable func-names */
+import { useContext } from 'react';
+import { DataContext } from '../store/GlobalState';
+import Loading from './Loading';
+import Toast from './Toast';
 
-const Notify = () => {
+const Notify = function () {
   const { state, dispatch } = useContext(DataContext);
   const { notify } = state;
 
@@ -13,16 +15,16 @@ const Notify = () => {
 
       {notify.error && (
         <Toast
-          msg={{ msg: notify.error, title: "Error" }}
-          handleShow={() => dispatch({ type: "NOTIFY", payload: {} })}
+          msg={{ msg: notify.error, title: 'Error' }}
+          handleShow={() => dispatch({ type: 'NOTIFY', payload: {} })}
           bgColor="bg-danger"
         />
       )}
 
       {notify.success && (
         <Toast
-          msg={{ msg: notify.success, title: "Success" }}
-          handleShow={() => dispatch({ type: "NOTIFY", payload: {} })}
+          msg={{ msg: notify.success, title: 'Success' }}
+          handleShow={() => dispatch({ type: 'NOTIFY', payload: {} })}
           bgColor="bg-success"
         />
       )}

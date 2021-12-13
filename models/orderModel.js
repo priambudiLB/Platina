@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable import/no-mutable-exports */
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
@@ -22,7 +24,7 @@ const orderSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 let Dataset = mongoose.models.order || mongoose.model("order", orderSchema);

@@ -1,3 +1,6 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable arrow-body-style */
 export const ACTIONS = {
   NOTIFY: "NOTIFY",
   AUTH: "AUTH",
@@ -7,18 +10,18 @@ export const ACTIONS = {
 };
 
 export const addToCart = (menu, cart) => {
-  if (menu.inStock === 0)
-    return { type: "NOTIFY", payload: { error: "Menu sedang kosong" } };
+  if (menu.inStock === 0) { return { type: "NOTIFY", payload: { error: "Menu sedang kosong" } }; }
 
   const check = cart.every((item) => {
     return item._id !== menu._id;
   });
 
-  if (!check)
+  if (!check) {
     return {
       type: "NOTIFY",
       payload: { error: "Menu sudah ditambahkan" },
     };
+  }
   return {
     type: "ADD_CART",
     payload: [...cart, { ...menu, quantity: 1 }],
@@ -38,7 +41,7 @@ export const increase = (data, id) => {
   newData.forEach((item) => {
     if (item._id === id) item.quantity += 1;
   });
-  return { type: "ADD_CART", payload: newData };
+  return { type: 'ADD_CART', payload: newData };
 };
 
 export const deleteMenu = (data, id, type) => {

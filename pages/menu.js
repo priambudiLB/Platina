@@ -1,15 +1,20 @@
-import Head from "next/head";
-import { useState } from "react";
-import { getData } from "../utils/fetchData";
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-unused-vars */
+import Head from 'next/head';
+import { useState } from 'react';
+import Link from 'next/link';
+import { getData } from '../utils/fetchData';
 
-import MenuItem from "../components/product/MenuItem";
+import MenuItem from '../components/product/MenuItem';
 
-import Link from "next/link";
+import styles from '../css/menu.module.css';
+import BackButton from '../components/BackButton';
 
-import styles from "../css/menu.module.css";
-import BackButton from "../components/BackButton";
-
-const Menu = (props) => {
+const Menu = function (props) {
   const [menu, setMenu] = useState(props.menu);
 
   return (
@@ -20,7 +25,7 @@ const Menu = (props) => {
         </a>
       </Link>
 
-      <div className="container" style={{ marginTop: "10px" }}>
+      <div className="container" style={{ marginTop: '10px' }}>
         <Head>
           <title>Menu</title>
         </Head>
@@ -38,7 +43,7 @@ const Menu = (props) => {
 };
 
 export async function getServerSideProps() {
-  const res = await getData("product");
+  const res = await getData('product');
 
   // server side rendering
   return {

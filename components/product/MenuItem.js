@@ -1,33 +1,37 @@
-import Link from "next/link";
-import { useContext } from "react";
-import { DataContext } from "../../store/GlobalState";
-import { addToCart } from "../../store/Actions";
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable func-names */
+/* eslint-disable react/prop-types */
+import Link from 'next/link';
+import { useContext } from 'react';
+import { DataContext } from '../../store/GlobalState';
+import { addToCart } from '../../store/Actions';
 
-import styles from "../../css/menu.module.css";
+import styles from '../../css/menu.module.css';
 
-const MenuItem = ({ menu }) => {
+const MenuItem = function ({ menu }) {
   const { state, dispatch } = useContext(DataContext);
   const { cart } = state;
 
-  const userLink = () => {
-    return (
-      <>
-        <Link href={`/menu/${menu._id}`}>
-          <a className="btn btn-info" style={{ marginRight: "5px", flex: 1 }}>
-            Lihat
-          </a>
-        </Link>
-        <button
-          className="btn btn-warning"
-          style={{ marginLeft: "5px", flex: 1 }}
-          disabled={menu.inStock === 0 ? true : false}
-          onClick={() => dispatch(addToCart(menu, cart))}
-        >
-          Pesan
-        </button>
-      </>
-    );
-  };
+  const userLink = () => (
+    <>
+      <Link href={`/menu/${menu._id}`}>
+        <a className="btn btn-info" style={{ marginRight: '5px', flex: 1 }}>
+          Lihat
+        </a>
+      </Link>
+      <button
+        className="btn btn-warning"
+        style={{ marginLeft: '5px', flex: 1 }}
+        disabled={menu.inStock === 0}
+        onClick={() => dispatch(addToCart(menu, cart))}
+      >
+        Pesan
+      </button>
+    </>
+  );
 
   return (
     <div className={styles.card}>
@@ -39,12 +43,17 @@ const MenuItem = ({ menu }) => {
 
       <div className={styles.cardBody}>
         <div className={`row justify-content-between mx-0 ${styles.cardTitle}`}>
-          <h5 className={`card-title text-capitalize `} title={menu.title}>
+          <h5 className="card-title text-capitalize " title={menu.title}>
             {menu.title}
           </h5>
           {/* PRICE */}
           <h6 className={`text-danger ${styles.price}`}>
-            {menu.price}K <span>{menu.pcs}pcs</span>
+            {menu.price}
+            K
+            <span>
+              {menu.pcs}
+              pcs
+            </span>
           </h6>
 
           {/* STOCK MENU */}

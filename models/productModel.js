@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable import/no-mutable-exports */
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema(
@@ -48,9 +50,8 @@ const productSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-let Dataset =
-  mongoose.models.product || mongoose.model("product", productSchema);
+let Dataset = mongoose.models.product || mongoose.model("product", productSchema);
 export default Dataset;

@@ -1,4 +1,7 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+/* eslint-disable react/jsx-filename-extension */
+import Document, {
+  Html, Head, Main, NextScript,
+} from 'next/document';
 
 class MyDocument extends Document {
   render() {
@@ -16,21 +19,21 @@ class MyDocument extends Document {
           <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
-          ></link>
+          />
           {/* BOOTSTRAP-BUNDLE */}
           <script
             async
             src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-          ></script>
+          />
           <script
             async
             src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-          ></script>
+          />
           {/* PAYPAL */}
           <script
             async
             src={`https://www.paypal.com/sdk/js?client-id=${process.env.PAYPAL_CLIENT_ID}`}
-          ></script>
+          />
         </Head>
         <body>
           <Main />

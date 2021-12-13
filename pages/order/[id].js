@@ -1,13 +1,18 @@
-import Head from "next/head";
-import { useState, useContext, useEffect } from "react";
-import { DataContext } from "../../store/GlobalState";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import OrderDetail from "../../components/OrderDetail";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-unused-vars */
+/* eslint-disable func-names */
+import Head from 'next/head';
+import { useState, useContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { DataContext } from '../../store/GlobalState';
+import OrderDetail from '../../components/OrderDetail';
 
-import BackButton from "../../components/BackButton";
+import BackButton from '../../components/BackButton';
 
-const DetailOrder = () => {
+const DetailOrder = function () {
   const { state, dispatch } = useContext(DataContext);
   const { orders, auth } = state;
 
@@ -21,21 +26,19 @@ const DetailOrder = () => {
   }, [orders]);
 
   return (
-    <>
-      <div className="container">
-        <Head>
-          <title>Detail Order</title>
-        </Head>
+    <div className="container">
+      <Head>
+        <title>Detail Order</title>
+      </Head>
 
-        <Link href="/orders">
-          <a>
-            <BackButton />
-          </a>
-        </Link>
+      <Link href="/orders">
+        <a>
+          <BackButton />
+        </a>
+      </Link>
 
-        <OrderDetail orderDetail={orderDetail} />
-      </div>
-    </>
+      <OrderDetail orderDetail={orderDetail} />
+    </div>
   );
 };
 

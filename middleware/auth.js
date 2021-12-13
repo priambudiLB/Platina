@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import jwt from "jsonwebtoken";
 import Users from "../models/userModel";
 

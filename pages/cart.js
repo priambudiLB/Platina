@@ -1,18 +1,29 @@
-import Head from "next/head";
-import { useContext, useState, useEffect } from "react";
-import { DataContext } from "../store/GlobalState";
-import CartMenu from "../components/CartMenu";
-import Link from "next/link";
-import { getData, postData } from "../utils/fetchData";
-import { useRouter } from "next/router";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable consistent-return */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable func-names */
+/* eslint-disable no-unused-vars */
+import Head from 'next/head';
+import { useContext, useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { DataContext } from '../store/GlobalState';
+import CartMenu from '../components/CartMenu';
+import { getData, postData } from '../utils/fetchData';
 // import PaypalBtn from "./paypalBtn";
 
-import styles from "../css/cart.module.css";
+import styles from '../css/cart.module.css';
 // import { addToCart } from "../store/Actions";
 
 // import Navbar from "../components/Navbar";
 
-const Cart = (props) => {
+const Cart = function (props) {
   const { state, dispatch } = useContext(DataContext);
   const { cart, auth, orders } = state;
 
@@ -27,9 +38,7 @@ const Cart = (props) => {
 
   useEffect(() => {
     const getTotal = () => {
-      const res = cart.reduce((prev, menu) => {
-        return prev + menu.price * menu.quantity;
-      }, 0);
+      const res = cart.reduce((prev, menu) => prev + menu.price * menu.quantity, 0);
       setTotal(res);
     };
     getTotal();
@@ -37,14 +46,16 @@ const Cart = (props) => {
 
   useEffect(() => {
     const cartLocal = JSON.parse(
-      localStorage.getItem("__next__cart01__mendoan")
+      localStorage.getItem('__next__cart01__mendoan'),
     );
     if (cartLocal && cartLocal.length > 0) {
-      let newArray = [];
+      const newArray = [];
       const updateCart = async () => {
         for (const menu of cartLocal) {
           const res = await getData(`product/${menu._id}`);
-          const { _id, title, images, price, inStock, sold } = res.menu;
+          const {
+            _id, title, images, price, inStock, sold,
+          } = res.menu;
           if (inStock > 0) {
             newArray.push({
               _id,
@@ -57,7 +68,7 @@ const Cart = (props) => {
             });
           }
         }
-        dispatch({ type: "ADD_CART", payload: newArray });
+        dispatch({ type: 'ADD_CART', payload: newArray });
       };
 
       updateCart();
@@ -65,12 +76,13 @@ const Cart = (props) => {
   }, [callback]);
 
   const handlePayment = async () => {
-    if (!address || !phoneNumber)
+    if (!address || !phoneNumber) {
       return dispatch({
-        type: "NOTIFY",
-        payload: { error: "Lengkapi alamat dan nomor handphone anda!" },
+        type: 'NOTIFY',
+        payload: { error: 'Lengkapi alamat dan nomor handphone anda!' },
       });
-    let newCart = [];
+    }
+    const newCart = [];
     for (const menu of cart) {
       const res = await getData(`product/${menu._id}`);
       if (res.menu.inStock - menu.quantity >= 0) {
@@ -80,27 +92,30 @@ const Cart = (props) => {
     if (newCart.length < cart.length) {
       setCallback(!callback);
       return dispatch({
-        type: "NOTIFY",
+        type: 'NOTIFY',
         payload: {
           error:
-            "Menu sedang kosong atau jumlah yang anda masukkan tidak sesuai.",
+            'Menu sedang kosong atau jumlah yang anda masukkan tidak sesuai.',
         },
       });
     }
 
     dispatch({
-      type: "NOTIFY",
+      type: 'NOTIFY',
       payload: { loading: true },
     });
-    postData("order", { address, phoneNumber, cart, total }, auth.token).then(
+    postData('order', {
+      address, phoneNumber, cart, total,
+    }, auth.token).then(
       (res) => {
-        if (res.err)
+        if (res.err) {
           return dispatch({
-            type: "NOTIFY",
+            type: 'NOTIFY',
             payload: { error: res.err },
           });
+        }
 
-        dispatch({ type: "ADD_CART", payload: [] });
+        dispatch({ type: 'ADD_CART', payload: [] });
 
         const newOrder = {
           ...res.newOrder,
@@ -108,30 +123,31 @@ const Cart = (props) => {
         };
 
         dispatch({
-          type: "ADD_ORDERS",
+          type: 'ADD_ORDERS',
           payload: [...orders, newOrder],
         });
         dispatch({
-          type: "NOTIFY",
+          type: 'NOTIFY',
           payload: { success: res.msg },
         });
         return router.push(`/order/${res.newOrder._id}`);
-      }
+      },
     );
   };
 
-  if (cart.length === 0)
+  if (cart.length === 0) {
     return (
       <>
         <Head>
           <title>Cart</title>
         </Head>
         <div className={styles.cart}>
-          <i className="bi bi-cart-x-fill"></i>
+          <i className="bi bi-cart-x-fill" />
           <p>Tidak ada pesanan</p>
         </div>
       </>
     );
+  }
 
   return (
     <>
@@ -184,10 +200,15 @@ const Cart = (props) => {
             </form>
 
             <h3>
-              Total: <span className="text-success">{total}K</span>
+              Total:
+              {' '}
+              <span className="text-success">
+                {total}
+                K
+              </span>
             </h3>
 
-            <Link href={auth.user ? "#!" : "/login"}>
+            <Link href={auth.user ? '#!' : '/login'}>
               <a
                 className="btn btn-info text-uppercase my-2"
                 onClick={handlePayment}

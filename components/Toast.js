@@ -1,11 +1,16 @@
-const Toast = ({ msg, handleShow, bgColor }) => {
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
+/* eslint-disable func-names */
+const Toast = function ({ msg, handleShow, bgColor }) {
   return (
     <div
       role="alert"
       aria-live="assertive"
       aria-atomic="true"
       className={`toast show position-fixed text-light ${bgColor}`}
-      style={{ top: "5px", right: "5px", zIndex: 9, minWidth: "280px" }}
+      style={{
+        top: '5px', right: '5px', zIndex: 9, minWidth: '280px',
+      }}
       data-autohide="false"
     >
       <div className={`toast-header ${bgColor} text-light`}>

@@ -1,15 +1,22 @@
-import Head from "next/head";
-import { useState, useContext /* useEffect, useRef */ } from "react";
-import { getData } from "../../utils/fetchData";
-import { DataContext } from "../../store/GlobalState";
-import { addToCart } from "../../store/Actions";
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable func-names */
+import Head from 'next/head';
+import { useState, useContext /* useEffect, useRef */ } from 'react';
+import Link from 'next/link';
+import { getData } from '../../utils/fetchData';
+import { DataContext } from '../../store/GlobalState';
+import { addToCart } from '../../store/Actions';
 
-import Link from "next/link";
+import styles from '../../css/menu.module.css';
+import BackButton from '../../components/BackButton';
 
-import styles from "../../css/menu.module.css";
-import BackButton from "../../components/BackButton";
-
-const DetailMenu = (props) => {
+const DetailMenu = function (props) {
   const [menu] = useState(props.menu);
   const [tab, setTab] = useState(0);
 
@@ -18,8 +25,8 @@ const DetailMenu = (props) => {
   // const imgRef = useRef();
 
   const isActive = (index) => {
-    if (tab === index) return " active";
-    return "";
+    if (tab === index) return ' active';
+    return '';
   };
   // useEffect(() => {
   //   const images = imgRef.current.children;
@@ -40,10 +47,10 @@ const DetailMenu = (props) => {
           <BackButton />
         </a>
       </Link>
-      <div className="container" style={{ marginTop: "5px" }}>
+      <div className="container" style={{ marginTop: '5px' }}>
         <div
           className="row detail_page"
-          style={{ marginTop: "-10px", padding: "0 20px" }}
+          style={{ marginTop: '-10px', padding: '0 20px' }}
         >
           <Head>
             <title>Detail Menu</title>
@@ -58,7 +65,7 @@ const DetailMenu = (props) => {
 
             <div
               className="row mx-0"
-              style={{ cursor: "pointer" }} /* ref={imgRef} */
+              style={{ cursor: 'pointer' }} /* ref={imgRef} */
             >
               {menu.images.map((img, index) => (
                 <img
@@ -76,23 +83,36 @@ const DetailMenu = (props) => {
 
           <div className={`col-md-6 ${styles.cartTitle}`}>
             <h2 className="text-uppercase">{menu.title}</h2>
-            <p className="text-uppercase">{menu.price}k</p>
+            <p className="text-uppercase">
+              {menu.price}
+              k
+            </p>
 
             <div className="row mx-0 d-flex justify-content-between">
               {menu.inStock > 0 ? (
-                <h6 className="text-danger">In Stock: {menu.inStock}</h6>
+                <h6 className="text-danger">
+                  In Stock:
+                  {menu.inStock}
+                </h6>
               ) : (
                 <h6 className="text-danger">Out Stock</h6>
               )}
 
-              <h6 className="text-danger">Sold: {menu.sold}</h6>
+              <h6 className="text-danger">
+                Sold:
+                {menu.sold}
+              </h6>
             </div>
 
-            <div className="my-2" style={{ textAlign: "justify" }}>
+            <div className="my-2" style={{ textAlign: 'justify' }}>
               {menu.description}
             </div>
-            <div className="my-2" style={{ textAlign: "justify" }}>
-              {menu.content} {menu.content} {menu.content}
+            <div className="my-2" style={{ textAlign: 'justify' }}>
+              {menu.content}
+              {' '}
+              {menu.content}
+              {' '}
+              {menu.content}
             </div>
 
             <button
