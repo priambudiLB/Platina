@@ -36,15 +36,3 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - Push to your branch: `git push origin [username]/my-feature`
 
 Then merge your pull request (squash commit) and delete your branch.
-
-# Note
-
-import data menu ke mongodb
-show data menu
-
-new
--- component/OrderDetail.js line 51, tambah new Date sama toLocaleString
--- pages/order.js line 59 toLocaleDateString ganti toLocaleString
--- component/product/menuitem.js line 40-62
--- css menu.module.css line 14 ganti 30rem, line 25 padding, line 34 kebawah hapus
--- pages/menu.js line 23 style hapus
