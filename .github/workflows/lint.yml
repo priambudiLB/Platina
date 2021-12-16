@@ -12,6 +12,5 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - run: npm 
-      - name: Run ESlint
-        eslint:scan: eslint . --ext .js,.jsx,.ts,.tsx 
+      - run: npm ci
+      - run: npm run eslint:scan
