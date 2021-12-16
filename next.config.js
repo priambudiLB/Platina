@@ -6,7 +6,7 @@ module.exports = {
     ACCESS_TOKEN_SECRET: "mendoan1239295812650630158",
     REFRESH_TOKEN_SECRET: "mendoansecret123248111secret91817681",
     PAYPAL_CLIENT_ID:
-      "AaGc4-cLIM6Xi2kbDcXlXXsmbGPFfZViDo2CpWw94AvBispM4-uiQaACHKGEck6W8_-6HC1b6GjZjLKS",
+      "AZXSv4lwtiWPXmQhoCz9uh-Uve93Cf2dUdxUMwnJRXnwRX2ZBXifWpjd5bEj-aDMLSTW5GEq65P5uTfx",
     CLOUD_UPDATE_PRESET: "mendoan_indonesia",
     CLOUD_NAME: "mendoanindonesia",
     CLOUD_API: "https://api.cloudinary.com/v1_1/mendoanindonesia/image/upload",

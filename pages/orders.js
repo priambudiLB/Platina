@@ -3,10 +3,10 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable no-unused-vars */
-import Head from 'next/head';
-import { useState, useContext, useEffect } from 'react';
-import Link from 'next/link';
-import { DataContext } from '../store/GlobalState';
+import Head from "next/head";
+import { useState, useContext, useEffect } from "react";
+import Link from "next/link";
+import { DataContext } from "../store/GlobalState";
 // import valid from "../utils/valid";
 // import { patchData } from "../utils/fetchData";
 
@@ -39,7 +39,7 @@ const Orders = function () {
         <div className="my-3 table-responsive">
           <table
             className="table-bordered table-hover w-100 text-uppercase"
-            style={{ minWidt: '600px', cursor: 'pointer' }}
+            style={{ minWidt: "600px", cursor: "pointer" }}
           >
             <thead className="bg-light font-weight-bold">
               <tr>
@@ -56,11 +56,11 @@ const Orders = function () {
                 <tr key={order._id}>
                   <td className="p-2">
                     <Link href={`/order/${order._id}`}>
-                      <a style={{ textDecoration: 'none' }}>{order._id}</a>
+                      <a style={{ textDecoration: "none" }}>{order._id}</a>
                     </Link>
                   </td>
                   <td className="p-2">
-                    {new Date(order.createdAt).toLocaleDateString()}
+                    {new Date(order.createdAt).toLocaleString()}
                   </td>
                   <td className="p-2">
                     {order.total}

@@ -11,7 +11,7 @@
 === (components/product/menuitem.js) === */
 .card {
   width: 20rem;
-  height: 28rem;
+  height: 30rem;
   margin: 10px auto;
   padding: 15px;
   border: 3px solid #cfcfcf;
@@ -22,7 +22,7 @@
 .cardBody {
   margin-top: 20px;
   border-top: 2px solid;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .cardImage {
@@ -31,17 +31,17 @@
   border-radius: 20px;
 }
 
-.cardTitle {
-  /* overflow: hidden; */
+/* .cardTitle {
+  overflow: hidden;
   height: 55px;
   text-overflow: ellipsis;
-  /* white-space: nowrap; */
+  white-space: nowrap;
   display: flex;
   align-items: flex-end;
 }
 .cardTitle h5 {
   width: 170px;
-}
+} */
 
 .price {
   font-size: 30px;
