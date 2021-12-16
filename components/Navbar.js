@@ -1,69 +1,168 @@
-import React from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useAuth } from "../services/auth";
-import styles from "../css/navbar.module.css";
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable func-names */
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect, useContext } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Cookie from 'js-cookie';
+import { DataContext } from '../store/GlobalState';
 
-function Navbar() {
-  const { user } = useAuth();
+import styles from '../css/navbar.module.css';
+
+const Navbar = function () {
   const router = useRouter();
+  const { state, dispatch } = useContext(DataContext);
+  const { auth, cart } = state;
+
   const isActive = (r) => {
     if (r === router.pathname) {
-      return " active";
-    } else {
-      return "";
+      return ' active';
     }
+    return '';
   };
-  return (
-    <>
-      <nav className={`navbar navbar-expand-lg navbar-light ${styles.navbar}`}>
-        <div className="container-fluid container">
-          <Link href="/">
-            <a className={styles.navbarBrand}>Mendoan.id</a>
-          </Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
 
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav ms-auto">
-              <Link href="/profile">
-                <div className={styles.navLink}>
-                  <a className={"nav-link" + isActive("/login")} aria-current="page">
-                    <i className="far fa-user" aria-hidden="true"></i> Profile
-                  </a>
-                </div>
-              </Link>
+  const handleLogout = () => {
+    Cookie.remove('refreshtoken', { path: 'api/auth/accessToken' });
+    localStorage.removeItem('firstLogin');
+    dispatch({ type: 'AUTH', payload: {} });
+    dispatch({ type: 'NOTIFY', payload: { success: 'Logout!' } });
+  };
 
-              {/* ======== LOGIN ============ */}
-              <Link href="/login">
-                <div className={styles.navLink}>
-                  <a className={"nav-link" + isActive("/login")} aria-current="page">
-                    <i className="far fa-user" aria-hidden="true"></i> Login
-                  </a>
-                </div>
-              </Link>
-
-              {/* ======== SIGN UP ========== */}
-              <Link href="/sign-up">
-                <div className={styles.navLink}>
-                  <a className={"nav-link" + isActive("/sign-up")} aria-current="page">
-                    <i className="far fa-user" aria-hidden="true"></i> Sign Up
-                  </a>
-                </div>
-              </Link>
-              <Link href="/cart">
-                <div className={styles.cart}>
-                  <i className="bi bi-bag-check" aria-hidden="true"></i>
-                  <a className={"nav-link" + isActive("/cart")} aria-current="page"></a>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </>
+  const loggedRouter = () => (
+    <li className="nav-item dropdown" style={{ marginTop: '5px' }}>
+      <a
+        className="nav-link dropdown-toggle"
+        href="#"
+        id="navbarDropdownMenuLink"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <img
+          src={auth.user.avatar}
+          alt={auth.user.avatar}
+          style={{
+            borderRadius: '50%',
+            width: '35px',
+            height: '35px',
+            transform: 'translateY(-3px)',
+            marginRight: '5px',
+          }}
+        />
+        <span className={styles.username}>{auth.user.username}</span>
+      </a>
+      <div
+        className="dropdown-menu"
+        aria-labelledby="navbarDropdownMenuLink"
+      >
+        <Link href="/profile">
+          <a
+            className="dropdown-item"
+            style={{ textTransform: 'capitalize' }}
+          >
+            Profile
+          </a>
+        </Link>
+        <Link href="/orders">
+          <a
+            className="dropdown-item"
+            style={{ textTransform: 'capitalize' }}
+          >
+            Orders
+          </a>
+        </Link>
+        <button className="dropdown-item" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
+    </li>
   );
-}
+
+  return (
+    <nav
+        // className={navbar ? "navbar active" : "navbar"}
+      className={`navbar navbar-expand-lg navbar-light ${styles.navbar}`}
+    >
+      <div className="container">
+        <Link href="/">
+          <a className={styles.navbarBrand}>Mendoan Indonesia</a>
+        </Link>
+
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
+
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarNavDropdown"
+        >
+          <ul className="navbar-nav p-1">
+            {/* MENU */}
+            <li className={styles.navLink}>
+              <Link href="/menu">
+                <a className={`nav-link${isActive('/menu')}`}>MENU</a>
+              </Link>
+            </li>
+
+            {/* LOGIN */}
+            {Object.keys(auth).length === 0 ? (
+              <li className={styles.navLink}>
+                <Link href="/login">
+                  <a className={`nav-link${isActive('/login')}`}>
+                    <i className="bi bi-person-fill" aria-hidden="true" />
+                    {' '}
+                    Login
+                  </a>
+                </Link>
+              </li>
+            ) : (
+              loggedRouter()
+            )}
+
+            {/* CART */}
+            <li className={styles.cart}>
+              <Link href="/cart">
+                <a className={`nav-link${isActive('/cart')}`}>
+                  <i
+                    className="bi bi-bag-check position-relative"
+                    aria-hidden="true"
+                  >
+                    <span
+                      className="position-absolute"
+                      style={{
+                        fontSize: '14px',
+                        fontStyle: 'normal',
+                        fontWeight: 'bold',
+                        padding: '0px 6px',
+                        background: '#ed143dc2',
+                        borderRadius: '50%',
+                        top: '-10px',
+                        right: '-10px',
+                        color: 'white',
+                      }}
+                    >
+                      {cart.length}
+                    </span>
+                  </i>
+                </a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 export default Navbar;

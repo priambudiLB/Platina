@@ -1,0 +1,42 @@
+/* CSS CART.JS */
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20%;
+}
+
+.cart i {
+  font-size: 10rem;
+}
+
+.cart p {
+  font-size: 18px;
+  margin-top: -10px;
+}
+
+/* ====== CSS CART MENU (components/cartmenu.js) ===== */
+
+.button:focus {
+  box-shadow: none;
+}
+
+.button:hover {
+  color: #666666;
+}
+
+@media (min-width: 768px) {
+  .cart {
+    margin-top: 0;
+  }
+
+  .cart i {
+    font-size: 20rem;
+  }
+
+  .cart p {
+    font-size: 30px;
+    margin-top: -50px;
+  }
+}

@@ -1,41 +1,30 @@
 {
-  "name": "ecommerce",
+  "name": "mendoan",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "eslint:init": "eslint --init",
+    "eslint:scan": "eslint ."
   },
   "dependencies": {
-    "@chakra-ui/core": "^0.8.0",
-    "@emotion/core": "^10.0.35",
-    "@emotion/styled": "^10.0.27",
-    "emotion-theming": "^10.0.27",
-    "firebase": "^8.0.0",
-    "firebase-admin": "^9.2.0",
-    "next": "latest",
-    "nookies": "^2.5.2",
+    "bcrypt": "^5.0.0",
+    "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.14",
+    "next": "12.0.4",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-redux": "^7.2.6",
-    "react-router-dom": "^6.0.2",
-    "react-scripts": "^4.0.3",
-    "redux": "^4.1.2",
-    "redux-devtools-extension": "^2.13.9"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.15.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "babel-jest": "^27.4.2",
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.0.3",
-    "eslint-plugin-testing-library": "^5.0.1",
-    "jest": "^27.4.3",
-    "jest-environment-jsdom": "^27.4.3",
-    "react-test-renderer": "^17.0.2"
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^19.0.2",
+    "eslint-config-next": "12.0.4",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0"
   }
 }

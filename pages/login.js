@@ -1,60 +1,115 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import firebaseClient from "../services/firebase/firebaseClient";
-import firebase from "firebase/app";
-import "firebase/auth";
-import { Box, Flex, Input, FormControl, FormLabel, FormHelperText, FormErrorMessage, Stack, Button, Heading, useToast } from "@chakra-ui/core";
+/* eslint-disable func-names */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable consistent-return */
+import Head from 'next/head';
+import Link from 'next/link';
+import { useState, useContext, useEffect } from 'react';
+import Cookie from 'js-cookie';
+import { useRouter } from 'next/router';
+import { DataContext } from '../store/GlobalState';
+import { postData } from '../utils/fetchData';
 
-export default function Login({ props }) {
-  firebaseClient();
-  const toast = useToast();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import styles from '../css/relog.module.css';
+
+const Login = function () {
+  const initialState = {
+    email: '',
+    password: '',
+  };
+  const [userData, setUserData] = useState(initialState);
+  const { email, password } = userData;
+
+  const { state, dispatch } = useContext(DataContext);
+  const { auth } = state;
+
+  const router = useRouter();
+
+  const handleChangeInput = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+    dispatch({ type: 'NOTIFY', payload: {} });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    dispatch({ type: 'NOTIFY', payload: { loading: true } });
+
+    const res = await postData('auth/login', userData);
+    if (res.err) return dispatch({ type: 'NOTIFY', payload: { error: res.err } });
+
+    dispatch({ type: 'NOTIFY', payload: { success: res.msg } });
+
+    dispatch({
+      type: 'AUTH',
+      payload: { token: res.access_token, user: res.user },
+    });
+
+    Cookie.set('refreshtoken', res.refresh_token, {
+      path: 'api/auth/accessToken',
+      expires: 7,
+    });
+
+    localStorage.setItem('firstLogin', true);
+  };
+
+  useEffect(() => {
+    if (Object.keys(auth).length !== 0) router.push('/menu');
+  }, [auth]);
+
   return (
-    <Flex>
-      <Box w={500} p={4} my={12} mx="auto">
-        <Heading textAlign="center" as="h2">
+    <div>
+      <Head>
+        <title>Login</title>
+      </Head>
+      <Link href="/">
+        <button type="button" className={`btn ${styles.back}`}>
+          <i className="bi bi-box-arrow-left" />
+        </button>
+      </Link>
+
+      <form className={`mx-auto ${styles.formLog}`} onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            name="email"
+            value={email}
+            onChange={handleChangeInput}
+          />
+          <small id="emailHelp" className="form-text text-muted">
+            We&apos;ll never share your email with anyone else.
+          </small>
+        </div>
+        <div className="form-group">
+          <label htmlFor="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            className="form-control"
+            id="exampleInputPassword1"
+            name="password"
+            value={password}
+            onChange={handleChangeInput}
+          />
+        </div>
+
+        <button type="submit" className="btn btn-primary w-100">
           Login
-        </Heading>
-        <FormControl isRequired>
-          <FormLabel htmlFor="email">Email address</FormLabel>
-          <Input onChange={(e) => setEmail(e.target.value)} type="email" id="emailAddress" value={email} aria-describedby="email-helper-text" />
-          <FormHelperText id="email-helper-text">We&apos;ll never share your email.</FormHelperText>
-        </FormControl>
-
-        <FormControl isRequired>
-          <FormLabel htmlFor="password">Password</FormLabel>
-          <Input onChange={(e) => setPassword(e.target.value)} type="password" id="password" value={password} aria-describedby="password-helper-text" />
-        </FormControl>
-
-        <Stack justify="center" mt={6} isInline spacing={10}>
-          <Button
-            minWidth="40%"
-            variant="solid"
-            isDisabled={email === "" || password === ""}
-            onClick={async () => {
-              await firebase
-                .auth()
-                .signInWithEmailAndPassword(email, password)
-                .then(function (firebaseUser) {
-                  window.location.href = "/";
-                })
-                .catch(function (error) {
-                  const message = error.message;
-                  toast({
-                    title: "An error occurred.",
-                    description: message,
-                    status: "error",
-                    duration: 9000,
-                    isClosable: true,
-                  });
-                });
-            }}
-          >
-            Log in
-          </Button>
-        </Stack>
-      </Box>
-    </Flex>
+        </button>
+        <p className="my-2">
+          You don&apos;t have an account?
+          <Link href="/sign-up">
+            <a style={{ color: 'crimson' }}> Register now</a>
+          </Link>
+        </p>
+      </form>
+    </div>
   );
-}
+};
+
+export default Login;
