@@ -31,18 +31,22 @@ const OrderDetail = function ({ orderDetail }) {
               <h5>Pesanan</h5>
               <p>
                 Nama:
+                {' '}
                 {order.user.username}
               </p>
               <p>
                 Email:
+                {' '}
                 {order.user.email}
               </p>
               <p>
                 Alamat:
+                {' '}
                 {order.address}
               </p>
               <p>
                 No Handphone:
+                {' '}
                 {order.phoneNumber}
               </p>
 
@@ -93,12 +97,14 @@ const OrderDetail = function ({ orderDetail }) {
                       </Link>
                     </h6>
 
-                    <span className="font-weight-bold m-0">
+                    <span className="font-weight-bold mr-2">
                       {item.quantity}
                       {' '}
                       x
+                      {' '}
                       {item.price}
                       K =
+                      {' '}
                       {item.price * item.quantity}
                       K
                     </span>
@@ -111,7 +117,8 @@ const OrderDetail = function ({ orderDetail }) {
           {!order.paid && (
             <div className="px-3 py-5">
               <h4 className="mb-4 text-center">
-                Total:
+                Total :
+                {' '}
                 {order.total}
                 K
               </h4>
