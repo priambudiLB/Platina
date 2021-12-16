@@ -14,4 +14,4 @@ jobs:
           node-version: 14
       - run: npm 
       - name: Run ESlint
-        run: eslint . --ext .js,.jsx,.ts,.tsx 
+        eslint:scan: eslint . --ext .js,.jsx,.ts,.tsx 
