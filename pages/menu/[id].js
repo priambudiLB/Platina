@@ -28,17 +28,6 @@ const DetailMenu = function (props) {
     if (tab === index) return ' active';
     return '';
   };
-  // useEffect(() => {
-  //   const images = imgRef.current.children;
-  //   for (let i = 0; i < images.length; i++) {
-  //     images[i].className = images[i].className.replace(
-  //       "active",
-  //       "img-thumbnail rounded"
-  //     );
-  //   }
-
-  //   images[tab].className = "img-thumbnail rounded active";
-  // }, [tab]);
 
   return (
     <>

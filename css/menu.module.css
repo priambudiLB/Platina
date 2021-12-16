@@ -31,18 +31,6 @@
   border-radius: 20px;
 }
 
-/* .cardTitle {
-  overflow: hidden;
-  height: 55px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: flex;
-  align-items: flex-end;
-}
-.cardTitle h5 {
-  width: 170px;
-} */
-
 .price {
   font-size: 30px;
 }

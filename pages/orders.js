@@ -11,21 +11,8 @@ import { DataContext } from "../store/GlobalState";
 // import { patchData } from "../utils/fetchData";
 
 const Orders = function () {
-  // const initialState = {
-  //   avatar: "",
-  //   username: "",
-  //   password: "",
-  //   confirmPassword: "",
-  // };
-  // const [data, setData] = useState(initialState);
-  // const { avatar, username, password, confirmPassword } = data;
-
   const { state } = useContext(DataContext);
   const { auth, orders } = state;
-
-  // useEffect(() => {
-  //   if (auth.user) setData({ ...data, username: auth.user.username });
-  // }, [auth.user]);
 
   if (!auth.user) return null;
   return (

@@ -230,13 +230,6 @@ const Profile = function () {
           </button>
         </div>
       </section>
-
-      {/* <section className="row">
-          <div className="col-md-4"></div>
-          <div className="col-md-8">
-            <h5 className="tex-uppercase">Orders</h5>
-          </div>
-        </section> */}
     </div>
   );
 };
