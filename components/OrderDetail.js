@@ -97,7 +97,7 @@ const OrderDetail = function ({ orderDetail }) {
                       </Link>
                     </h6>
 
-                    <span className="font-weight-bold mr-2">
+                    <span className="font-weight-bold" style={{ marginRight: "-5px" }}>
                       {item.quantity}
                       {' '}
                       x

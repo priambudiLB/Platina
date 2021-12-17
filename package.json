@@ -7,7 +7,9 @@
     "start": "next start",
     "lint": "next lint",
     "eslint:init": "eslint --init",
-    "eslint:scan": "eslint ."
+    "eslint:scan": "eslint .",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -25,6 +27,13 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.27.1",
-    "eslint-plugin-react-hooks": "^4.3.0"
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "babel-jest": "^27.4.2",
+    "jest": "^27.4.3",
+    "jest-environment-jsdom": "^27.4.3",
+    "react-test-renderer": "^17.0.2"
   }
 }
