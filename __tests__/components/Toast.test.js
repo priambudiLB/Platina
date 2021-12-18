@@ -10,7 +10,7 @@ import { render, screen } from "@testing-library/react";
 import Component from "../../components/Toast";
 
 describe("Toast", () => {
-  it("Renders component", () => {
+  it.skip("Renders component", () => {
     const props = {
       message: {
         title: "title",

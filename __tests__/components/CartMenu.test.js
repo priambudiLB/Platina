@@ -1,17 +1,16 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/no-unresolved */
-/* eslint-disable import/extensions */
-/* eslint-disable no-undef */
 /**
  * @jest-environment jsdom
  */
 
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Component from "../../components/CartItem";
+import Component from "../../components/CartMenu";
 
-describe("CartItem", () => {
+describe("CartMenu", () => {
   it.skip("Renders component", () => {
     const props = {
       h5: {
