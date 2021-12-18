@@ -1,18 +1,19 @@
-import "../styles/globals.css";
-import { ThemeProvider } from "@chakra-ui/core";
-import Layout from "../components/Layout";
-import { AuthProvider } from "../services/auth";
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
+/* eslint-disable func-names */
+import '../styles/globals.css';
+import Layout from '../components/Layout';
+import { DataProvider } from '../store/GlobalState';
 
-function MyApp({ Component, pageProps }) {
+const MyApp = function ({ Component, pageProps }) {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </AuthProvider>
-    </ThemeProvider>
+    <DataProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </DataProvider>
   );
-}
+};
 
 export default MyApp;

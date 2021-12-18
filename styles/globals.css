@@ -17,6 +17,11 @@ a {
   box-sizing: border-box;
 }
 
+img {
+  object-fit: cover;
+}
+
+/* ======== SCROLL-BAR ========= */
 html::-webkit-scrollbar {
   width: 5px;
 }
@@ -29,3 +34,21 @@ html::-webkit-scrollbar-thumb {
   background: #e9b015;
   border-radius: 30px;
 }
+
+::-webkit-file-upload-button {
+  cursor: pointer;
+}
+
+/* CSS DETAIL MENU pages/menu/id.js */
+.detail_page .img-thumbnail.active {
+  border: 2px solid #e9b015;
+}
+
+/* -======== LOADING ========- */
+@import url("../css/loading.module.css");
+
+/* ========= MENU =========== */
+/* @import url("../css/menu.module.css"); */
+
+/* -======== LOADING ========- */
+/* @import url("../css/profile.module.css"); */
