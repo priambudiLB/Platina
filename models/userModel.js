@@ -1,8 +1,10 @@
+/* eslint-disable prefer-const */
+/* eslint-disable import/no-mutable-exports */
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    username: {
       type: String,
       required: true,
     },
@@ -23,15 +25,16 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+
     avatar: {
       type: String,
       default:
-        "https://res.cloudinary.com/devatchannel/image/upload/v1602752402/avatar/avatar_cugq40.png",
+        "https://res.cloudinary.com/mendoanindonesia/image/upload/v1638602986/avatar_d6aglv.png",
     },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 let Dataset = mongoose.models.user || mongoose.model("user", userSchema);

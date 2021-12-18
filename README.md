@@ -24,6 +24,7 @@
 </p>
 
 ## MIRO link (UI sketch)
+
 https://miro.com/app/board/o9J_lj5b90M=/?invite_link_id=808490970350
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

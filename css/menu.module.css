@@ -1,0 +1,94 @@
+/* === CSS menu.js ===
+=== (pages/menu.js) === */
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  justify-content: center;
+  margin: 20px 20px 20px 0;
+}
+
+/* ====== CSS MenuItem.js ======
+=== (components/product/menuitem.js) === */
+.card {
+  width: 20rem;
+  height: 30rem;
+  margin: 10px auto;
+  padding: 15px;
+  border: 3px solid #cfcfcf;
+  border-radius: 30px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cardBody {
+  margin-top: 20px;
+  border-top: 2px solid;
+  padding: 10px 0;
+}
+
+.cardImage {
+  height: 200px;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.price {
+  font-size: 30px;
+}
+.price span {
+  font-size: 16px;
+}
+
+.cardText {
+  height: 70px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* CSS [id].js (pages/menu/[id].js */
+.imgFit {
+  margin-bottom: 20px;
+  object-fit: cover;
+  object-position: 0 50%;
+  height: 200px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.imgThumb {
+  height: 50px;
+  width: 20%;
+  border-radius: 5px;
+  padding: 2px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+  margin-right: 5px;
+}
+
+.cartTitle {
+  padding-top: 20px;
+}
+.cartTitle h2 {
+  font-size: 20px;
+}
+.cartTitle p {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .imgFit {
+    height: 350px;
+  }
+
+  .imgThumb {
+    height: 80px;
+    width: 20%;
+  }
+
+  .cartTitle h2 {
+    font-size: 35px;
+  }
+  .cartTitle p {
+    font-size: 30px;
+  }
+}
